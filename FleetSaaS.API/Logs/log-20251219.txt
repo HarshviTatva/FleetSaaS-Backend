@@ -1,0 +1,379 @@
+[2025-12-19 12:28:47.961 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 12:29:03.165 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 12:31:45.834 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 12:35:17.637 +05:30] [INF]
+HTTP POST /api/User/register-company responded 200 in 215364.8077 ms
+
+----------------------------------------
+[2025-12-19 13:26:23.894 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 13:26:47.649 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 13:26:48.226 +05:30] [ERR]
+Failed executing DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Users" ALTER COLUMN "UserId" TYPE uuid;
+
+----------------------------------------
+[2025-12-19 13:27:57.790 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 13:30:38.376 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 13:30:51.413 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 15:54:46.173 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 51.1922 ms
+
+----------------------------------------
+[2025-12-19 15:54:46.482 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 15.8206 ms
+
+----------------------------------------
+[2025-12-19 15:55:01.524 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 15:55:51.393 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 52.5691 ms
+
+----------------------------------------
+[2025-12-19 15:55:51.726 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 14.2984 ms
+
+----------------------------------------
+[2025-12-19 15:56:35.364 +05:30] [INF]
+HTTP POST /api/User/register-company responded 400 in 205.6541 ms
+
+----------------------------------------
+[2025-12-19 15:56:55.900 +05:30] [INF]
+HTTP POST /api/User/register-company responded 400 in 73.0725 ms
+
+----------------------------------------
+[2025-12-19 15:57:35.904 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.3726 ms
+
+----------------------------------------
+[2025-12-19 15:57:36.073 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 5.0692 ms
+
+----------------------------------------
+[2025-12-19 15:58:05.688 +05:30] [INF]
+HTTP POST /api/User/register-company responded 400 in 16.2283 ms
+
+----------------------------------------
+[2025-12-19 15:58:16.195 +05:30] [INF]
+HTTP POST /api/User/register-company responded 400 in 1.1637 ms
+
+----------------------------------------
+[2025-12-19 15:59:56.719 +05:30] [INF]
+HTTP POST /api/User/register-company responded 400 in 36.9162 ms
+
+----------------------------------------
+[2025-12-19 16:21:01.151 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 51.0453 ms
+
+----------------------------------------
+[2025-12-19 16:21:01.448 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 22.5433 ms
+
+----------------------------------------
+[2025-12-19 16:21:56.722 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 53.2583 ms
+
+----------------------------------------
+[2025-12-19 16:21:56.892 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 17.6420 ms
+
+----------------------------------------
+[2025-12-19 16:23:39.811 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 52.9223 ms
+
+----------------------------------------
+[2025-12-19 16:23:39.943 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 17.2271 ms
+
+----------------------------------------
+[2025-12-19 16:29:24.031 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 53.0517 ms
+
+----------------------------------------
+[2025-12-19 16:29:24.313 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 18.9849 ms
+
+----------------------------------------
+[2025-12-19 16:30:42.717 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 53.2473 ms
+
+----------------------------------------
+[2025-12-19 16:30:43.017 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 26.2044 ms
+
+----------------------------------------
+[2025-12-19 16:31:47.068 +05:30] [INF]
+HTTP OPTIONS /api/User/register-company responded 204 in 2.6074 ms
+
+----------------------------------------
+[2025-12-19 16:31:56.704 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 16:32:08.092 +05:30] [INF]
+HTTP POST /api/User/register-company responded 200 in 21020.1424 ms
+
+----------------------------------------
+[2025-12-19 16:35:19.149 +05:30] [INF]
+HTTP OPTIONS /api/User/register-company responded 204 in 0.6380 ms
+
+----------------------------------------
+[2025-12-19 16:35:29.188 +05:30] [ERR]
+An unhandled exception has occurred while executing the request.
+System.ApplicationException: Company already registered
+   at FleetSaaS.Application.Services.UserService.CompanyRegisterAsync(CompanyUserRegisterRequest companyUserRegisterRequest) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\UserService.cs:line 13
+   at FleetSaaS.API.Controllers.UserController.CompanyUserRegister(CompanyUserRegisterRequest companyUserRegisterRequest) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\UserController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 16:35:29.236 +05:30] [ERR]
+Unhandled exception. TraceId: 0HNHUTND5BEC4:00000007
+System.ApplicationException: Company already registered
+   at FleetSaaS.Application.Services.UserService.CompanyRegisterAsync(CompanyUserRegisterRequest companyUserRegisterRequest) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\UserService.cs:line 13
+   at FleetSaaS.API.Controllers.UserController.CompanyUserRegister(CompanyUserRegisterRequest companyUserRegisterRequest) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\UserController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 16:35:29.254 +05:30] [ERR]
+HTTP POST /api/User/register-company responded 500 in 10102.4500 ms
+
+----------------------------------------
+[2025-12-19 16:35:37.097 +05:30] [INF]
+HTTP OPTIONS /api/User/register-company responded 204 in 0.1036 ms
+
+----------------------------------------
+[2025-12-19 16:35:46.259 +05:30] [INF]
+HTTP POST /api/User/register-company responded 200 in 4675.3728 ms
+
+----------------------------------------
+[2025-12-19 16:37:29.800 +05:30] [INF]
+HTTP OPTIONS /api/User/register-company responded 204 in 0.1736 ms
+
+----------------------------------------
+[2025-12-19 16:37:34.968 +05:30] [INF]
+HTTP POST /api/User/register-company responded 200 in 5161.3075 ms
+
+----------------------------------------
+[2025-12-19 17:03:25.125 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 57.2379 ms
+
+----------------------------------------
+[2025-12-19 17:03:25.419 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 11.4731 ms
+
+----------------------------------------
+[2025-12-19 17:11:12.615 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 54.8777 ms
+
+----------------------------------------
+[2025-12-19 17:11:12.915 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 11.8946 ms
+
+----------------------------------------
+[2025-12-19 17:11:45.133 +05:30] [INF]
+HTTP OPTIONS /api/User/register-company responded 204 in 2.2106 ms
+
+----------------------------------------
+[2025-12-19 17:11:45.817 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 17:11:47.022 +05:30] [INF]
+HTTP POST /api/User/register-company responded 200 in 1882.5071 ms
+
+----------------------------------------
+[2025-12-19 17:35:03.629 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.4583 ms
+
+----------------------------------------
+[2025-12-19 17:35:03.893 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 4.0421 ms
+
+----------------------------------------
+[2025-12-19 17:35:34.300 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.2815 ms
+
+----------------------------------------
+[2025-12-19 17:35:34.429 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 3.8699 ms
+
+----------------------------------------
+[2025-12-19 17:35:37.098 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.3703 ms
+
+----------------------------------------
+[2025-12-19 17:35:37.187 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 1.7650 ms
+
+----------------------------------------
+[2025-12-19 17:36:28.767 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.3766 ms
+
+----------------------------------------
+[2025-12-19 17:36:28.887 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 2.1321 ms
+
+----------------------------------------
+[2025-12-19 17:36:50.719 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 0.4222 ms
+
+----------------------------------------
+[2025-12-19 17:36:50.825 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 8.9455 ms
+
+----------------------------------------
+[2025-12-19 18:34:10.599 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200 in 66.1734 ms
+
+----------------------------------------
+[2025-12-19 18:34:10.904 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200 in 30.6283 ms
+
+----------------------------------------
+[2025-12-19 18:34:39.667 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-19 18:34:59.370 +05:30] [ERR]
+An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 25
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 18:34:59.408 +05:30] [ERR]
+Unhandled exception. TraceId: 0HNHUVSCRQ421:00000009
+System.UnauthorizedAccessException: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 25
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 18:34:59.423 +05:30] [INF]
+HTTP POST /api/Auth/login responded 401 in 21926.5524 ms
+
+----------------------------------------
+[2025-12-19 18:36:11.813 +05:30] [ERR]
+An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 25
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 18:36:11.821 +05:30] [ERR]
+Unhandled exception. TraceId: 0HNHUVSCRQ421:0000000B
+System.UnauthorizedAccessException: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 25
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 14
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+
+----------------------------------------
+[2025-12-19 18:36:11.827 +05:30] [INF]
+HTTP POST /api/Auth/login responded 401 in 65946.3661 ms
+
+----------------------------------------

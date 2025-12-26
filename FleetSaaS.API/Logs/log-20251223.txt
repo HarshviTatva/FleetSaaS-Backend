@@ -1,0 +1,416 @@
+[2025-12-23 10:24:54.558 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:25:49.450 +05:30] [ERR]
+HTTP POST /api/Company/register-company responded 500
+FluentValidation.AsyncValidatorInvokedSynchronouslyException: Validator "CompanyUserRegisterValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in /_/src/FluentValidation/AbstractValidator.cs:line 207
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in /_/src/FluentValidation/AbstractValidator.cs:line 153
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationModelValidatorProvider.cs:line 113
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 44
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 62
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 46
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+
+----------------------------------------
+[2025-12-23 10:26:23.647 +05:30] [ERR]
+HTTP POST /api/Company/register-company responded 500
+FluentValidation.AsyncValidatorInvokedSynchronouslyException: Validator "CompanyUserRegisterValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in /_/src/FluentValidation/AbstractValidator.cs:line 207
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in /_/src/FluentValidation/AbstractValidator.cs:line 153
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationModelValidatorProvider.cs:line 113
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 44
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 62
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 46
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+
+----------------------------------------
+[2025-12-23 10:26:55.548 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-23 10:26:55.652 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:27:07.098 +05:30] [ERR]
+HTTP POST /api/Company/register-company responded 500
+FluentValidation.AsyncValidatorInvokedSynchronouslyException: Validator "CompanyUserRegisterValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in /_/src/FluentValidation/AbstractValidator.cs:line 207
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in /_/src/FluentValidation/AbstractValidator.cs:line 153
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationModelValidatorProvider.cs:line 113
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 44
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 62
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in /Users/jskinner/code/FluentValidation/src/FluentValidation.AspNetCore/FluentValidationVisitor.cs:line 46
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+
+----------------------------------------
+[2025-12-23 10:27:18.681 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:27:38.944 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 10:27:40.063 +05:30] [INF]
+HTTP POST /api/Company/register-company responded 200
+
+----------------------------------------
+[2025-12-23 10:31:12.890 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-23 10:31:12.986 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:32:03.669 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:34:07.160 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-23 10:34:07.266 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:36:18.341 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 10:36:30.015 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 10:36:30.695 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 10:36:31.510 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 10:55:09.844 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 10:55:10.009 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 11:12:36.994 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:12:50.228 +05:30] [ERR]
+HTTP POST /api/Auth/login responded 500
+System.UnauthorizedAccessException: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 26
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+
+----------------------------------------
+[2025-12-23 11:13:41.568 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:15:38.722 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 11:15:45.569 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:15:46.243 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 11:15:55.816 +05:30] [ERR]
+HTTP POST /api/Auth/login responded 500
+System.Exception: Invalid email or password.
+   at FleetSaaS.Application.Services.AuthService.LoginAsync(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Application\Services\AuthService.cs:line 26
+   at FleetSaaS.API.Controllers.AuthController.Login(LoginRequest request) in D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+
+----------------------------------------
+[2025-12-23 11:16:08.859 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:16:09.096 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 11:18:45.516 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:18:45.646 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 11:38:54.085 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:38:54.210 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 11:39:52.497 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:39:52.598 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 11:48:30.395 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 11:48:30.558 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 12:04:19.418 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 12:04:19.545 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 13:30:44.251 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 13:30:44.519 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 14:21:59.956 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 14:22:00.089 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 14:25:17.426 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 14:25:17.504 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 14:30:13.386 +05:30] [INF]
+HTTP OPTIONS /api/Company/register-company responded 204
+
+----------------------------------------
+[2025-12-23 14:30:13.937 +05:30] [INF]
+HTTP POST /api/Company/register-company responded 200
+
+----------------------------------------
+[2025-12-23 14:30:41.636 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 14:30:41.719 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 14:32:28.004 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 14:32:28.084 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 16:54:49.131 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 16:56:00.782 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 16:56:01.413 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 16:56:02.243 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 17:26:23.362 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-23 17:26:23.466 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 17:27:25.784 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-23 17:27:25.917 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 17:27:37.657 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 17:28:59.825 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 17:29:00.430 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 17:29:01.294 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 17:29:49.643 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 17:29:49.765 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 17:33:22.366 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 17:33:22.527 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 17:48:55.277 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 17:48:55.398 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 22:15:06.493 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-23 22:16:14.378 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 22:16:15.769 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-23 22:16:16.715 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 22:16:16.715 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-23 22:17:31.455 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-23 22:17:31.635 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------

@@ -1,0 +1,168 @@
+[2025-12-24 09:23:40.581 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 09:23:51.934 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 09:23:52.515 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-24 09:23:53.354 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 09:41:48.245 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 09:41:48.446 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 09:54:11.221 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 09:54:11.400 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:05:25.947 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:05:26.175 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:10:47.656 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:10:47.876 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:12:39.801 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:12:39.896 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:21:56.327 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 11:22:02.430 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:22:03.035 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-24 11:22:03.867 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:23:04.788 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 11:23:09.528 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:23:10.111 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-24 11:23:39.081 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 11:23:46.245 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:23:46.853 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-24 11:24:01.448 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:24:02.769 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 11:24:09.498 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 11:24:13.176 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 15:23:54.651 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 15:24:57.752 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 15:24:58.373 +05:30] [WRN]
+Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+
+----------------------------------------
+[2025-12-24 15:24:59.211 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 15:28:46.282 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 15:28:46.409 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 15:29:09.697 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 15:29:09.829 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 15:37:33.257 +05:30] [INF]
+HTTP OPTIONS /api/Auth/login responded 204
+
+----------------------------------------
+[2025-12-24 15:37:33.387 +05:30] [INF]
+HTTP POST /api/Auth/login responded 200
+
+----------------------------------------
+[2025-12-24 17:29:51.213 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-24 17:29:51.317 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
+[2025-12-24 17:34:26.351 +05:30] [INF]
+HTTP GET /swagger/index.html responded 200
+
+----------------------------------------
+[2025-12-24 17:34:26.453 +05:30] [INF]
+HTTP GET /swagger/v1/swagger.json responded 200
+
+----------------------------------------
