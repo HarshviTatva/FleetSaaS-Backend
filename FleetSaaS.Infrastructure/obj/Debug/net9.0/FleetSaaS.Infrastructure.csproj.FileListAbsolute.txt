@@ -18,23 +18,3 @@ D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Tr
 D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.pdb
 D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.genruntimeconfig.cache
 D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\Multi-Tenant Fleet & Trip\Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\ref\FleetSaaS.Infrastructure.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.csproj.AssemblyReference.cache
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.AssemblyInfoInputs.cache
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.AssemblyInfo.cs
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.csproj.CoreCompileInputs.cache
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.sourcelink.json
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\refint\FleetSaaS.Infrastructure.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.pdb
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Infrastructure.deps.json
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Infrastructure.runtimeconfig.json
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Infrastructure.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Infrastructure.pdb
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Application.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Domain.dll
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Application.pdb
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\bin\Debug\net9.0\FleetSaaS.Domain.pdb
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaa.22AD062E.Up2Date
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\FleetSaaS.Infrastructure.genruntimeconfig.cache
-D:\Old PC Backup\D Drive\My_Projects\GroomingSessionDemo\FleetSaaS-BE\FleetSaaS-Backend\FleetSaaS.Infrastructure\obj\Debug\net9.0\ref\FleetSaaS.Infrastructure.dll
