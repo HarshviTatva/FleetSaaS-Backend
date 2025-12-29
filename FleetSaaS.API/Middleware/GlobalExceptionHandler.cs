@@ -1,6 +1,6 @@
-﻿using FleetSaaS.Infrastructure.Common;
+﻿using FleetSaaS.Domain.Exceptions;
+using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Common.Response;
-using FleetSaaS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -65,15 +65,21 @@ namespace FleetSaaS.API.Middleware
         {
             List<string> messages = new();
             int httpStatusCode = (int)HttpStatusCode.InternalServerError;
+            Dictionary<string, object>? metadata = null;
 
-            void AddStatusCodeAndMessage(HttpStatusCode statusCode, string message)
+            void AddStatusCodeAndMessage(HttpStatusCode statusCode, string message, Dictionary<string, object>? dataFields=null)
             {
                 httpStatusCode = (int)statusCode;
                 messages.Add(message);
+                metadata = dataFields;
             }
 
             switch (exception)
             {
+                case ApplicationException applicationException:
+                    AddStatusCodeAndMessage(HttpStatusCode.Conflict, applicationException.Message); 
+                    break;
+
                 case UnauthorizedAccessException unauthorizedAccessException:
                     AddStatusCodeAndMessage(HttpStatusCode.Unauthorized, unauthorizedAccessException.Message);
                     break;
@@ -89,13 +95,17 @@ namespace FleetSaaS.API.Middleware
                 case AppDomainUnloadedException appDomainUnloadedException:
                     AddStatusCodeAndMessage(HttpStatusCode.NoContent, appDomainUnloadedException.Message);
                     break;
+
+                case ConflictException conflictException:
+                    AddStatusCodeAndMessage(HttpStatusCode.Conflict,conflictException.Message, new Dictionary<string, object> {{ "field", conflictException.Field }});
+                    break;
                
                 default:
                     messages.Add(exception.Message);
                     break;
             }
 
-            return (httpStatusCode, messages, null);
+            return (httpStatusCode, messages, metadata);
         }
     }
 }

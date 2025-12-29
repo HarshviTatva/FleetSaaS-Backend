@@ -27,9 +27,8 @@ namespace FleetSaaS.Application.Services
             var dispatcherRequest = _mapper.Map<User>(userRequest);
             if (userRequest?.Id==null)
             {
-                if (await userRepository.ExistsByEmailAsync(userRequest.Email))
+                if (await userRepository.ExistsByEmailAsync(userRequest.Email,userRequest.Id))
                     throw new ApplicationException(MessageConstants.USER_EXISTS);
-
                
                 dispatcherRequest.Password = _passwordHasher.HashPassword(
                       dispatcherRequest,
@@ -57,7 +56,7 @@ namespace FleetSaaS.Application.Services
                 userRequest.Id = dispatcherRequest.Id;
                 await userRepository.UpdateUser(dispatcherRequest);
             }
-            return (Guid)dispatcherRequest.Id;
+            return dispatcherRequest.Id;
         }
 
         public async Task DeleteDispatcher(Guid Id)

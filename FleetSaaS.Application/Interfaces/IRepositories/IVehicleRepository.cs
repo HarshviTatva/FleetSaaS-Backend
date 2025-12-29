@@ -1,5 +1,6 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
+using FleetSaaS.Domain.Entities;
 
 namespace FleetSaaS.Application.Interfaces.IRepositories
 {
@@ -7,7 +8,9 @@ namespace FleetSaaS.Application.Interfaces.IRepositories
     {
         Task<VehicleResponse> GetAllVehicles(PagedRequest pagedRequest);
         Task DeleteVehicle(Guid vehicleId);
-        void AddVehicle(VehicleRequest vehicleRequest);
-        void UpdateVehicle(VehicleRequest vehicleRequest);
+        Task AddVehicle(Vehicle vehicle);
+        Task UpdateVehicle(Vehicle vehicle);
+        Task<bool> ExistsByVinAsync(string vin, Guid? vehicleId = null);
+        Task<bool> ExistsByLicensePlateAsync(string vin, Guid? vehicleId = null);
     }
 }

@@ -1,14 +1,15 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.Interfaces.IServices;
-using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetSaaS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "CompanyOwner")]
     public class DispatcherController(IDispatcherService dispatcherService) : ControllerBase
     {
         [HttpGet("dispatchers")]

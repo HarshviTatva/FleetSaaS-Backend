@@ -4,4 +4,12 @@
     {
         public const string APPLICATION_JSON = "application/json";
     }
+
+    public class Fields
+    {
+        public const string Email = "email";
+        public const string License_Number = "licenseNumber";
+        public const string Vin="vin";
+        public const string License_Plate= "licensePlate";
+    }
 }

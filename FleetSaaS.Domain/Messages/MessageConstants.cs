@@ -28,7 +28,7 @@
 
         public const string NO_RECORD_FOUND = "No Record found.";
 
-        public const string DELETED_MESSAGE = "{0} deleted successfully!";
+        public const string DELETED_MESSAGE = "{0} deleted successfully.";
 
         #region File
         public const string FILE_IS_NULL = "File is null or empty.";
@@ -61,5 +61,16 @@
     public class DriverMessages
     {
         public const string LICENSE_NO_EXISTS = "License number already exists.";
+    }
+
+    public class VehicleMessages
+    {
+        public const string LICENSE_PLATE_EXISTS = "License plate already exists.";
+        public const string VIN_EXISTS = "Duplicate Vehicle Identification number.";
+    }
+
+    public class ValidationMessages 
+    {
+        public const string VALIDATION_FAILED = "Validation failed!";
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3kvyYRNupC8=",
+  "dgSpecHash": "L1Sx5EDMR7U=",
   "success": true,
-  "projectFilePath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
+  "projectFilePath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PCTR69\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\PCTR69\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

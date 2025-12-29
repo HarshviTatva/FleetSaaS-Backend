@@ -1,7 +1,7 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
-using FleetSaaS.Domain.Enum;
+using FleetSaaS.Domain.Entities;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +13,16 @@ namespace FleetSaaS.Infrastructure.Repositories
         ITenantProvider _tenantProvider
         ) : IVehicleRepository
     {
+        public async Task<bool> ExistsByVinAsync(string vin, Guid? vehicleId=null)
+        {
+            return await _dbContext.Vehicles.AnyAsync(x => x.Vin == vin && !x.IsDeleted && x.Id!=vehicleId);
+        }
+
+        public async Task<bool> ExistsByLicensePlateAsync(string licensePlate, Guid? vehicleId = null)
+        {
+            return await _dbContext.Vehicles.AnyAsync(x => x.LicensePlate == licensePlate && !x.IsDeleted && x.Id!=vehicleId);
+        }
+
         public async Task<VehicleResponse> GetAllVehicles(PagedRequest pagedRequest)
         {
             Guid companyId = _tenantProvider.CompanyId;
@@ -65,7 +75,6 @@ namespace FleetSaaS.Infrastructure.Repositories
             };
         }
 
-
         public async Task DeleteVehicle(Guid vehicleId)
         {
             Guid companyId = _tenantProvider.CompanyId;
@@ -82,15 +91,17 @@ namespace FleetSaaS.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async void AddVehicle(VehicleRequest vehicleRequest)
+        public async Task AddVehicle(Vehicle vehicle)
         {
-            await _dbContext.Vehicles.AddAsync(vehicleRequest);
+            vehicle.CompanyId = _tenantProvider.CompanyId;
+            await _dbContext.Vehicles.AddAsync(vehicle);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async void UpdateVehicle(VehicleRequest vehicleRequest)
+        public async Task UpdateVehicle(Vehicle vehicle)
         {
-            await _dbContext.Vehicles.Update(vehicleRequest);
+            vehicle.CompanyId = _tenantProvider.CompanyId;
+            _dbContext.Vehicles.Update(vehicle);
             await _dbContext.SaveChangesAsync();
         }
     }

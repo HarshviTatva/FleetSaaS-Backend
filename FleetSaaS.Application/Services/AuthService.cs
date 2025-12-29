@@ -4,6 +4,7 @@ using FleetSaaS.Application.Interfaces.IRepositories;
 using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
+using FleetSaaS.Domain.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -29,24 +30,24 @@ namespace FleetSaaS.Application.Services
             if (result == PasswordVerificationResult.Failed)
                 throw new UnauthorizedAccessException(MessageConstants.INVALID_CREDENTIALS);
 
-            var role = user.RoleId;
-            
-            var token = GenerateToken(user,role);
+            var token = GenerateToken(user);
 
             return new LoginResponse
             {
                 AccessToken = token,
-                ExpiresAt = DateTime.UtcNow.AddHours(2)
+                ExpiresAt = DateTime.UtcNow.AddHours(7)
             };
         }
 
-        private string GenerateToken(User user, int roleId)
+        private string GenerateToken(User user)
         {
+            RoleType role = (RoleType)user.RoleId;
             var claims = new List<Claim>
                 {
                     new Claim("UserId", user.Id.ToString()),
-                    new Claim("CompanyId", user.CompanyId.ToString()),
-                    new Claim("RoleId",roleId.ToString()),
+                    new Claim("CompanyId", user.CompanyId.ToString()), 
+                    new Claim("RoleId",user.RoleId.ToString()),
+                    new Claim(ClaimTypes.Role, role.ToString()),
                     new Claim("Username",user.UserName),
                     new Claim (ClaimTypes.Email, user.Email)
                 };
@@ -60,7 +61,7 @@ namespace FleetSaaS.Application.Services
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddHours(8),
                 signingCredentials: creds
             );
 

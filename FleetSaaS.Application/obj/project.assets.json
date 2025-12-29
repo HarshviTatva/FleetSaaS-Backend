@@ -3477,11 +3477,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
+      "projectUniqueName": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
       "projectName": "FleetSaaS.Application",
-      "projectPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
+      "projectPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Application\\FleetSaaS.Application.csproj",
       "packagesPath": "C:\\Users\\PCTR69\\.nuget\\packages\\",
-      "outputPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Application\\obj\\",
+      "outputPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3503,8 +3503,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Domain\\FleetSaaS.Domain.csproj": {
-              "projectPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaSDemo\\FleetSaaS-Backend\\FleetSaaS.Domain\\FleetSaaS.Domain.csproj"
+            "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Domain\\FleetSaaS.Domain.csproj": {
+              "projectPath": "D:\\Old PC Backup\\D Drive\\My_Projects\\GroomingSessionDemo\\FleetSaaS-BE\\FleetSaaS-Backend\\FleetSaaS.Domain\\FleetSaaS.Domain.csproj"
             }
           }
         }

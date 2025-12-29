@@ -6,9 +6,9 @@ using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Enum;
-using Microsoft.AspNetCore.Http;
+using FleetSaaS.Domain.Exceptions;
+using FleetSaaS.Infrastructure.Common;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FleetSaaS.Application.Services
 {
@@ -22,15 +22,17 @@ namespace FleetSaaS.Application.Services
     {
         public async Task<Guid> AddEditDriver(DriverUserRequest driverRequest)
         {
+            if (await userRepository.ExistsByEmailAsync(driverRequest.Email, driverRequest.Id))
+                throw new ConflictException(field: Fields.Email, message: MessageConstants.USER_EXISTS);
+
+            if (await driverRepository.ExistsByLicenseNumberAsync(driverRequest.LicenseNumber, driverRequest.Id))
+                throw new ConflictException(field: Fields.License_Number, message: DriverMessages.LICENSE_NO_EXISTS);
+
+            var driverUser = _mapper.Map<Driver>(driverRequest);
+            var userRequest = _mapper.Map<User>(driverRequest);
+
             if (driverRequest?.Id==null)
             {
-                if (await userRepository.ExistsByEmailAsync(driverRequest.Email))
-                    throw new ApplicationException(MessageConstants.USER_EXISTS);
-
-                if (await driverRepository.ExistsByLicenseNumberAsync(driverRequest.LicenseNumber))
-                    throw new ApplicationException(DriverMessages.LICENSE_NO_EXISTS);
-
-                var userRequest = _mapper.Map<User>(driverRequest);
                 userRequest.Password = _passwordHasher.HashPassword(
                       userRequest,
                       driverRequest.UserName+"@123"
@@ -51,17 +53,13 @@ namespace FleetSaaS.Application.Services
                         "
                    );
                
-                var driverUser = _mapper.Map<Driver>(driverRequest);
                 driverUser.UserId = userRequest.Id;
                 await driverRepository.AddDriver(driverUser);
-                return (Guid)userRequest.Id;
+                return userRequest.Id;
             }
             else
             {
-                var driverUser = _mapper.Map<Driver>(driverRequest);
                 await driverRepository.UpdateDriver(driverUser);
-                
-                var userRequest = _mapper.Map<User>(driverRequest);
                 userRequest.Id = driverRequest.UserId.Value;
                 await userRepository.UpdateUser(userRequest);
                 return (Guid)driverRequest.Id;

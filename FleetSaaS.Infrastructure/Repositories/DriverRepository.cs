@@ -15,9 +15,9 @@ namespace FleetSaaS.Infrastructure.Repositories
         (ApplicationDbContext _dbContext,
         ITenantProvider _tenantProvider) : IDriverRepository
        {
-        public async Task<bool> ExistsByLicenseNumberAsync(string licenseNumber)
+        public async Task<bool> ExistsByLicenseNumberAsync(string licenseNumber, Guid? driverId = null)
         {
-            return await _dbContext.Drivers.AnyAsync(x => x.LicenseNumber == licenseNumber);
+            return await _dbContext.Drivers.AnyAsync(x => x.LicenseNumber == licenseNumber && !x.IsDeleted && x.Id!=driverId);
         }
 
         public async Task<DriverResponse> GetAllDrivers(PagedRequest pagedRequest)
@@ -33,7 +33,7 @@ namespace FleetSaaS.Infrastructure.Repositories
                && !u.IsDeleted
                && u.RoleId == (int)RoleType.Driver
 
-                select new DriverDTO
+            select new DriverDTO
                 {
                     Id = d.Id,
                     UserId = u.Id,

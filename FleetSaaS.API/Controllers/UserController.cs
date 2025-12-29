@@ -5,7 +5,7 @@ namespace FleetSaaS.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController(IUserService userService) : ControllerBase
+    public class UserController() : ControllerBase
     {
         
     }

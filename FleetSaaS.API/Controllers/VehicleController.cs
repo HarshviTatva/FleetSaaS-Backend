@@ -29,7 +29,7 @@ namespace FleetSaaS.API.Controllers
             return Ok(new SuccessApiResponse<object>(
             httpStatusCode: StatusCodes.Status201Created,
             message: new List<string> { string.Format(MessageConstants.DELETED_MESSAGE, "Vehicle") },
-            data: null));
+            data: id));
         }
 
         [HttpPost("vehicle")]

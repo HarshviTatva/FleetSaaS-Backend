@@ -14,17 +14,8 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         public async Task AddAsync(Company company)
         {
-            using var transaction = await _dbContext.Database.BeginTransactionAsync();
-            try
-            {
-                await _dbContext.Companies.AddAsync(company);
-                await _dbContext.SaveChangesAsync();
-                await transaction.CommitAsync();
-            }
-            catch (Exception ex)
-            {
-                await transaction.RollbackAsync();
-            }
+            await _dbContext.Companies.AddAsync(company);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> CheckCompanyExists(Guid companyId)

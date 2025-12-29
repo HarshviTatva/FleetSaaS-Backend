@@ -1,5 +1,4 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
-using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
@@ -10,10 +9,9 @@ namespace FleetSaaS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "CompanyOwner")]
+    [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
     public class DriverController(IDriverService _driverService) : ControllerBase
     {
-
         [HttpGet("drivers")]
         public async Task<IActionResult> GetAllDriver([FromQuery] PagedRequest request)
         {
