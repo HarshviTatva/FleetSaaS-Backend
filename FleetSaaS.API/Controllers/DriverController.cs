@@ -1,5 +1,6 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.Interfaces.IServices;
+using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
 using Microsoft.AspNetCore.Authorization;
@@ -38,7 +39,7 @@ namespace FleetSaaS.API.Controllers
             ));
         }
 
-        [HttpDelete("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> DeleteDriver(Guid id)
         { 
             await _driverService.DeleteDriver(id);
@@ -47,5 +48,17 @@ namespace FleetSaaS.API.Controllers
             message: new List<string> { string.Format(MessageConstants.DELETED_MESSAGE, "Driver") },
             data: null));
         }
+
+        //driver can view only assigned vehicles
+        //[Authorize(Roles = "Driver")]
+        //[HttpGet("vehicles")]
+        //public async Task<IActionResult> GetAllAssignedVehicles([FromQuery] PagedRequest request)
+        //{
+        //    return Ok(new SuccessApiResponse<object>(
+        //              httpStatusCode: StatusCodes.Status201Created,
+        //              message: new List<string> { MessageConstants.DATA_RETRIEVED },
+        //              data: await vehicleService.GetAllVehicles(request)
+        //              ));
+        //}
     }
 }

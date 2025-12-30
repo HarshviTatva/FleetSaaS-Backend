@@ -1,14 +1,16 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
+using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IServices;
-using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetSaaS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
     public class VehicleController(IVehicleService vehicleService) : ControllerBase
     {
         //add, edit, delete vehicle records
@@ -22,7 +24,7 @@ namespace FleetSaaS.API.Controllers
                       ));
         }
 
-        [HttpDelete("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> DeleteVehicle(Guid id)
         {
             await vehicleService.DeleteVehicle(id);
@@ -41,9 +43,62 @@ namespace FleetSaaS.API.Controllers
                 data: await vehicleService.AddEditVehicle(vehicleRequest)));
         }
 
-        //automated insurance expiry date alerts
         //vehicle assignment to drivers 
-        //driver can view only assigned vehicles
+        [HttpGet("all-vehicles")]
+        public async Task<IActionResult> GetAllVehiclesDropdown()
+        {
+            return Ok(new SuccessApiResponse<object>(
+                      httpStatusCode: StatusCodes.Status201Created,
+                      message: new List<string> { MessageConstants.DATA_RETRIEVED },
+                      data: await vehicleService.GetAllVehiclesDropdown()
+                      ));
+        }
+
+        [HttpPost("vehicle-assignment")]
+        public async Task<IActionResult> AssignVehicleToDriver([FromBody]AssignVehicleRequest assignVehicleRequest)
+        {
+            return Ok
+            (
+                new SuccessApiResponse<Guid>
+                (
+                httpStatusCode: StatusCodes.Status201Created,
+                message:new List<string> { VehicleMessages.ASSIGNED_MESSAGE },
+                data : await vehicleService.AssignVehicleToDriver(assignVehicleRequest)
+                )
+            );
+        }
+
+        [HttpPatch("vehicle-assignments/{id}")]
+        public async Task<IActionResult> ReAssignVehicleToDriver([FromBody]AssignVehicleRequest assignVehicleRequest)
+        {
+            return Ok
+            (
+                new SuccessApiResponse<Guid>
+                (
+                httpStatusCode: StatusCodes.Status200OK,
+                message: new List<string> { VehicleMessages.REASSIGNED_MESSAGE },
+                data: await vehicleService.ReAssignVehicleToDriver(assignVehicleRequest)
+                )
+            );
+        }
+
+        [HttpPatch("vehicle-unassign/{id}")]
+        public async Task<IActionResult> UnAssignVehicleToDriver(Guid id)
+        {
+            await vehicleService.UnAssignVehicleToDriver(id);
+            return Ok
+            (
+                new SuccessApiResponse<object>
+                (
+                httpStatusCode: StatusCodes.Status200OK,
+                message: new List<string> { VehicleMessages.UNASSIGNED_MESSAGE },
+                data: id
+                )
+            );
+        }
+
+       
+        //automated insurance expiry date alerts
 
 
     }

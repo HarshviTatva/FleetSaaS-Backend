@@ -371,21 +371,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("FleetSaaS.Domain.Entities.UserRole", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRole");
-                });
-
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Vehicle", b =>
                 {
                     b.Property<Guid>("Id")
@@ -407,8 +392,8 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("InsuranceExpiryDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("InsuranceExpiryDate")
+                        .HasColumnType("date");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -454,12 +439,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("AssignedFrom")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("AssignedTo")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
 
@@ -477,6 +456,9 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.Property<Guid>("DriverId")
                         .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -580,25 +562,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("FleetSaaS.Domain.Entities.UserRole", b =>
-                {
-                    b.HasOne("FleetSaaS.Domain.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FleetSaaS.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Vehicle", b =>

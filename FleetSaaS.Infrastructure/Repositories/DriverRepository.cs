@@ -28,13 +28,21 @@ namespace FleetSaaS.Infrastructure.Repositories
             var drivers = await (
             from d in _dbContext.Drivers
             join u in _dbContext.Users on d.UserId equals u.Id
+            join va in _dbContext.VehicleAssignments
+            .Where(x => x.IsActive && !x.IsDeleted)
+            on d.Id equals va.DriverId into vaGroup
+            from va in vaGroup.DefaultIfEmpty()
+            join v in _dbContext.Vehicles
+            .Where(x=>x.IsActive && !x.IsDeleted)
+            on va.VehicleId equals v.Id into vGroup
+            from v in vGroup.DefaultIfEmpty()
             where d.CompanyId == companyId
                && !d.IsDeleted
                && !u.IsDeleted
                && u.RoleId == (int)RoleType.Driver
 
             select new DriverDTO
-                {
+            {
                     Id = d.Id,
                     UserId = u.Id,
                     UserName = u.UserName,
@@ -43,9 +51,11 @@ namespace FleetSaaS.Infrastructure.Repositories
                     LicenseNumber = d.LicenseNumber,
                     LicenseExpiryDate = (DateOnly)(d.LicenseExpiry),
                     IsAvailable = d.IsAvailable,
-                    IsActive = u.IsActive
-                    }
-                    ).ToListAsync();
+                    IsActive = u.IsActive,
+                    IsVehicleAssigned = va != null,
+                    VehicleAssignmentId = va != null ? va.Id : null,
+                    VehicleName = $"{v.Model} - {v.LicensePlate}"
+            }).ToListAsync();
 
             // Sorting
             drivers = pagedRequest.SortBy switch

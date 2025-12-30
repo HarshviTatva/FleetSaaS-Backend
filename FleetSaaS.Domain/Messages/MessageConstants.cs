@@ -67,6 +67,9 @@
     {
         public const string LICENSE_PLATE_EXISTS = "License plate already exists.";
         public const string VIN_EXISTS = "Duplicate Vehicle Identification number.";
+        public const string ASSIGNED_MESSAGE = "Vehicle assigned successfully to driver.";
+        public const string REASSIGNED_MESSAGE = "Vehicle reassigned successfully to driver.";
+        public const string UNASSIGNED_MESSAGE = "Vehicle unassigned successfully to driver.";
     }
 
     public class ValidationMessages 

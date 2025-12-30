@@ -42,5 +42,29 @@ namespace FleetSaaS.Application.Services
             }
             return vehicle.Id;
         }
+
+        public async Task<List<DropdownResponse>> GetAllVehiclesDropdown()
+        {
+            return await _vehicleRepository.GetAllVehiclesDropdown();
+        }
+
+        public async Task<Guid> AssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest)
+        {
+            var vehicleAssignment = _mapper.Map<VehicleAssignment>(assignVehicleRequest);
+            await _vehicleRepository.AssignVehicleToDriver(vehicleAssignment);
+            return vehicleAssignment.Id;
+        }
+
+        public async Task<Guid> ReAssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest)
+        {
+            var vehicleAssignment = _mapper.Map<VehicleAssignment>(assignVehicleRequest);
+            await _vehicleRepository.ReAssignVehicleToDriver(vehicleAssignment);
+            return vehicleAssignment.Id;
+        }
+
+        public async Task UnAssignVehicleToDriver(Guid id)
+        {
+            await _vehicleRepository.UnAssignVehicleToDriver(id);
+        }
     }
 }

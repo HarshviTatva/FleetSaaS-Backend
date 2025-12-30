@@ -8,5 +8,9 @@ namespace FleetSaaS.Application.Interfaces.IServices
         Task<VehicleResponse> GetAllVehicles(PagedRequest request);
         Task DeleteVehicle(Guid Id);
         Task<Guid> AddEditVehicle(VehicleRequest vehicleRequest);
+        Task<List<DropdownResponse>> GetAllVehiclesDropdown();
+        Task<Guid> AssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest);
+        Task<Guid> ReAssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest);
+        Task UnAssignVehicleToDriver(Guid id);
     }
 }

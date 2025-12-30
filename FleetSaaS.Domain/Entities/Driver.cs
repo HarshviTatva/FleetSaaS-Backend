@@ -10,6 +10,7 @@ namespace FleetSaaS.Domain.Entities
         public string LicenseNumber { get; set; }
         public DateOnly? LicenseExpiry {  get; set; }
         public bool IsAvailable { get; set; }
+        //public bool? IsVehicleAssigned { get; set; }
         public ICollection<VehicleAssignment> VehicleAssignments { get; set; }
             = new List<VehicleAssignment>();
 

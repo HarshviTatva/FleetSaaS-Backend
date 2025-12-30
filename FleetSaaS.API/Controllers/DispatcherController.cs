@@ -38,7 +38,7 @@ namespace FleetSaaS.API.Controllers
             ));
         }
 
-        [HttpDelete("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> DeleteDispatcher(Guid id)
         {
             await dispatcherService.DeleteDispatcher(id);

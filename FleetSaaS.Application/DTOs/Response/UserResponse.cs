@@ -5,6 +5,9 @@
         public string LicenseNumber { get; set; }
         public DateOnly LicenseExpiryDate { get; set; }
         public bool? IsAvailable { get; set; }
+        public bool? IsVehicleAssigned { get; set; }
+        public Guid? VehicleAssignmentId { get; set; }
+        public string? VehicleName { get; set; }
     }
 
     public class DriverResponse() : PagedResponse

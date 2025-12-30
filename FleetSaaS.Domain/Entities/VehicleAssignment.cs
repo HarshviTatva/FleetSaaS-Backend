@@ -9,7 +9,8 @@ namespace FleetSaaS.Domain.Entities
         public Vehicle Vehicle { get; set; } = default!;
         public Guid DriverId { get; set; }
         public Driver Driver { get; set; } = default!;
-        public DateTime? AssignedFrom {  get; set; }
-        public DateTime? AssignedTo { get; set; }
+        //public DateTime? AssignedFrom {  get; set; }
+        //public DateTime? AssignedTo { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

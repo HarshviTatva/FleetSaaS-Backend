@@ -1,6 +1,7 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
+using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
@@ -102,6 +103,62 @@ namespace FleetSaaS.Infrastructure.Repositories
         {
             vehicle.CompanyId = _tenantProvider.CompanyId;
             _dbContext.Vehicles.Update(vehicle);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<DropdownResponse>> GetAllVehiclesDropdown()
+        {
+            Guid companyId = _tenantProvider.CompanyId;
+            return await _dbContext.Vehicles
+              .Where(v =>
+                  v.IsActive && !v.IsDeleted &&
+                  (v.CompanyId == companyId) &&
+                  !_dbContext.VehicleAssignments.Any(a =>
+                      a.VehicleId == v.Id &&
+                      a.IsActive))
+              .Select(v => new DropdownResponse
+              {
+                  Value = v.Id,
+                  Label = $"{v.Model} - {v.LicensePlate}"
+              })
+              .ToListAsync();
+        }
+
+        public async Task AssignVehicleToDriver(VehicleAssignment vehicleAssignment)
+        {
+            vehicleAssignment.CompanyId = _tenantProvider.CompanyId;
+            await _dbContext.VehicleAssignments.AddAsync(vehicleAssignment);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task ReAssignVehicleToDriver(VehicleAssignment vehicleAssignment)
+        {
+            vehicleAssignment.CompanyId = _tenantProvider.CompanyId;
+            VehicleAssignment? assignedVehicleDetails = await _dbContext.VehicleAssignments.FirstOrDefaultAsync(x=>x.Id == vehicleAssignment.Id && !x.IsDeleted && x.IsActive);
+            if (assignedVehicleDetails != null)
+            {
+                assignedVehicleDetails.VehicleId = vehicleAssignment.VehicleId;
+                assignedVehicleDetails.UpdatedBy = _tenantProvider.CompanyId;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UnAssignVehicleToDriver(Guid id)
+        {
+            Guid companyId = _tenantProvider.CompanyId;
+
+            VehicleAssignment? assignedVehicleDetails = await _dbContext.VehicleAssignments
+                .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted && u.CompanyId==companyId);
+
+            if (assignedVehicleDetails != null)
+            {
+                assignedVehicleDetails.IsActive = false;
+                assignedVehicleDetails.IsDeleted = true;
+            }
+            else
+            {
+                throw new Exception(message:MessageConstants.NO_RECORD_FOUND);
+            }
             await _dbContext.SaveChangesAsync();
         }
     }

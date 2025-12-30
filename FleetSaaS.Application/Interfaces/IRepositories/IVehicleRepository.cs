@@ -12,5 +12,9 @@ namespace FleetSaaS.Application.Interfaces.IRepositories
         Task UpdateVehicle(Vehicle vehicle);
         Task<bool> ExistsByVinAsync(string vin, Guid? vehicleId = null);
         Task<bool> ExistsByLicensePlateAsync(string vin, Guid? vehicleId = null);
+        Task<List<DropdownResponse>> GetAllVehiclesDropdown();
+        Task AssignVehicleToDriver(VehicleAssignment vehicleAssignment);
+        Task ReAssignVehicleToDriver(VehicleAssignment vehicleAssignment);
+        Task UnAssignVehicleToDriver(Guid id);
     }
 }
