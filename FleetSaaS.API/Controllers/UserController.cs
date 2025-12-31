@@ -1,5 +1,4 @@
-﻿using FleetSaaS.Application.Interfaces.IServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace FleetSaaS.API.Controllers
 {

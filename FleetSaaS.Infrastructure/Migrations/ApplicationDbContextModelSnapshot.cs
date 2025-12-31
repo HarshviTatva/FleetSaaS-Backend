@@ -196,12 +196,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("ActualEndTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("ActualStartTime")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
 
@@ -217,12 +211,18 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<string>("Destination")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid?>("DriverId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -231,7 +231,7 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("PlannedStartTime")
+                    b.Property<DateTime?>("StartTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Status")
@@ -243,9 +243,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("VehicleAssignmentId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("VehicleId")
                         .HasColumnType("uuid");
 
@@ -254,8 +251,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("DriverId");
-
-                    b.HasIndex("VehicleAssignmentId");
 
                     b.HasIndex("VehicleId");
 
@@ -529,17 +524,9 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .WithMany("Trips")
                         .HasForeignKey("DriverId");
 
-                    b.HasOne("FleetSaaS.Domain.Entities.VehicleAssignment", "VehicleAssignment")
-                        .WithMany()
-                        .HasForeignKey("VehicleAssignmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FleetSaaS.Domain.Entities.Vehicle", null)
                         .WithMany("Trips")
                         .HasForeignKey("VehicleId");
-
-                    b.Navigation("VehicleAssignment");
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.TripOdometerLog", b =>

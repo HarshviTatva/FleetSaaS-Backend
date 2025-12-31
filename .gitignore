@@ -55,3 +55,4 @@ nunit-*.xml
 **/Logs/
 /FleetSaaS.Infrastructure/Migrations/20251230065525_Remove-Few-Fields.cs
 /FleetSaaS.Infrastructure/Migrations/20251230065525_Remove-Few-Fields.Designer.cs
+/FleetSaaS.Infrastructure/Migrations

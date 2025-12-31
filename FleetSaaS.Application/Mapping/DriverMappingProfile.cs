@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Domain.Entities;
-using System;
 namespace FleetSaaS.Application.Mapping
 {
     public class DriverMappingProfile :Profile

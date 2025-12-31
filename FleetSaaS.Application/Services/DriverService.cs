@@ -75,5 +75,10 @@ namespace FleetSaaS.Application.Services
         {
             return await driverRepository.GetAllDrivers(request);
         }
+
+        public async Task<VehicleDTO> GetAssignedVehicle()
+        {
+            return await driverRepository.GetAssignedVehicle();
+        }
     }
 }

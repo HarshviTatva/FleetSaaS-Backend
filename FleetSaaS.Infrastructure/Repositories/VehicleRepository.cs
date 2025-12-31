@@ -48,8 +48,14 @@ namespace FleetSaaS.Infrastructure.Repositories
 
             if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
             {
+                var search = pagedRequest.Search.Trim().ToLower();
+
                 vehicles = vehicles.Where(x =>
-                    x.Model.Contains(pagedRequest.Search)).ToList();
+                    x.Model.ToLower().Contains(search) ||
+                    x.Make.ToLower().Contains(search) ||
+                    x.LicensePlate.ToLower().Contains(search) ||
+                    x.Vin.ToLower().Contains(search)
+                ).ToList();
             }
 
             // Sorting

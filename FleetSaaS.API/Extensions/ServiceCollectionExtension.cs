@@ -49,7 +49,7 @@ namespace FleetSaaS.API.Extensions
             services.AddControllers();
                 //.AddFluentValidation();
 
-            //automapper
+            //auto-mapper
             services.AddAutoMapper(typeof(CompanyMappingProfile).Assembly);
 
             // HttpContext
@@ -153,6 +153,7 @@ namespace FleetSaaS.API.Extensions
             services.AddScoped<IDispatcherService, DispatcherService>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ITripService, TripService>();
 
             //repositories
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -161,6 +162,7 @@ namespace FleetSaaS.API.Extensions
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IDispatcherRepository, DispatcherRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ITripRepository, TripRepository>();
         }
     }
 }

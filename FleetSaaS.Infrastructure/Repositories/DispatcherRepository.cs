@@ -1,6 +1,7 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
+using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Enum;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
@@ -35,10 +36,11 @@ namespace FleetSaaS.Infrastructure.Repositories
 
             if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
             {
+                var search = pagedRequest.Search.Trim().ToLower();
                 dispatchers = dispatchers.Where(x =>
-                    x.UserName.Contains(pagedRequest.Search) ||
-                    x.Email.Contains(pagedRequest.Search) ||
-                    x.PhoneNumber.Contains(pagedRequest.Search)).ToList();
+                    x.UserName.ToLower().Contains(search) ||
+                    x.Email.ToLower().Contains(search) ||
+                    x.PhoneNumber.ToLower().Contains(search)).ToList();
             }
 
             // Sorting

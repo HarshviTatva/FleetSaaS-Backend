@@ -10,7 +10,7 @@ namespace FleetSaaS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
+    //[Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
     public class DriverController(IDriverService _driverService) : ControllerBase
     {
         [HttpGet("drivers")]
@@ -50,15 +50,15 @@ namespace FleetSaaS.API.Controllers
         }
 
         //driver can view only assigned vehicles
-        //[Authorize(Roles = "Driver")]
-        //[HttpGet("vehicles")]
-        //public async Task<IActionResult> GetAllAssignedVehicles([FromQuery] PagedRequest request)
-        //{
-        //    return Ok(new SuccessApiResponse<object>(
-        //              httpStatusCode: StatusCodes.Status201Created,
-        //              message: new List<string> { MessageConstants.DATA_RETRIEVED },
-        //              data: await vehicleService.GetAllVehicles(request)
-        //              ));
-        //}
+        [Authorize(Roles = "Driver")]
+        [HttpGet("assigned-vehicle")]
+        public async Task<IActionResult> GetAssignedVehicle()
+        {
+            return Ok(new SuccessApiResponse<object>(
+                      httpStatusCode: StatusCodes.Status201Created,
+                      message: new List<string> { MessageConstants.DATA_RETRIEVED },
+                      data: await _driverService.GetAssignedVehicle()
+                      ));
+        }
     }
 }

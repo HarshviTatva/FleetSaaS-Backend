@@ -8,5 +8,6 @@ namespace FleetSaaS.Application.Interfaces.IServices
         Task<Guid> AddEditDriver(DriverUserRequest driverRequest);
         Task<DriverResponse> GetAllDrivers(PagedRequest request);
         Task DeleteDriver(Guid Id);
+        Task<VehicleDTO> GetAssignedVehicle();
     }
 }

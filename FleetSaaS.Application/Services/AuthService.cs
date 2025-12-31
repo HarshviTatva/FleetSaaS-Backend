@@ -45,7 +45,7 @@ namespace FleetSaaS.Application.Services
             var claims = new List<Claim>
                 {
                     new Claim("UserId", user.Id.ToString()),
-                    new Claim("CompanyId", user.CompanyId.ToString()), 
+                    new Claim("CompanyId", user.CompanyId.ToString()),
                     new Claim("RoleId",user.RoleId.ToString()),
                     new Claim(ClaimTypes.Role, role.ToString()),
                     new Claim("Username",user.UserName),

@@ -7,12 +7,16 @@ using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Enum;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace FleetSaaS.Infrastructure.Repositories
 {
     public class DriverRepository
         (ApplicationDbContext _dbContext,
+        IMapper _mapper,
+        IHttpContextAccessor _httpContextAccessor,
         ITenantProvider _tenantProvider) : IDriverRepository
        {
         public async Task<bool> ExistsByLicenseNumberAsync(string licenseNumber, Guid? driverId = null)
@@ -56,6 +60,18 @@ namespace FleetSaaS.Infrastructure.Repositories
                     VehicleAssignmentId = va != null ? va.Id : null,
                     VehicleName = $"{v.Model} - {v.LicensePlate}"
             }).ToListAsync();
+
+            //searching
+            if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
+            {
+                var search = pagedRequest.Search.Trim().ToLower();
+                drivers = drivers.Where(x =>
+                    x.UserName.ToLower().Contains(search) ||
+                    x.Email.ToLower().Contains(search) ||
+                    x.PhoneNumber.ToLower().Contains(search) ||
+                    x.LicenseNumber.ToLower().Contains(search)
+                ).ToList();
+            }
 
             // Sorting
             drivers = pagedRequest.SortBy switch
@@ -115,7 +131,7 @@ namespace FleetSaaS.Infrastructure.Repositories
                     !d.IsDeleted);
 
             if (driver == null)
-                throw new UnauthorizedAccessException("Driver not found");
+                throw new UnauthorizedAccessException(MessageConstants.DATA_RETRIEVAL_FAILED);
 
             driver.IsDeleted = true;
 
@@ -129,6 +145,34 @@ namespace FleetSaaS.Infrastructure.Repositories
 
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<VehicleDTO> GetAssignedVehicle()
+        {
+            var companyId = _tenantProvider.CompanyId;
+
+            var userIdClaim = _httpContextAccessor.HttpContext?.User?
+                                .FindFirst("UserId")?.Value;
+
+            if (!Guid.TryParse(userIdClaim, out var userId))
+                throw new UnauthorizedAccessException(MessageConstants.NO_RECORD_FOUND);
+
+            var vehicle = await (
+                from d in _dbContext.Drivers
+                join va in _dbContext.VehicleAssignments on d.Id equals va.DriverId
+                join v in _dbContext.Vehicles on va.VehicleId equals v.Id
+                where d.UserId == userId
+                      && d.CompanyId == companyId
+                      && va.CompanyId == companyId
+                      && v.CompanyId == companyId
+                select v
+            ).AsNoTracking().FirstOrDefaultAsync();
+
+            if (vehicle == null)
+                throw new Exception(MessageConstants.DATA_RETRIEVAL_FAILED);
+
+            return _mapper.Map<VehicleDTO>(vehicle);
+        }
+
 
     }
 }

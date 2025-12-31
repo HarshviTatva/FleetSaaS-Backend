@@ -11,5 +11,6 @@ namespace FleetSaaS.Application.Interfaces.IRepositories
         Task AddDriver(Driver driver);
         Task UpdateDriver(Driver driverUser);
         Task DeleteDriver(Guid driverId);
+        Task<VehicleDTO> GetAssignedVehicle();
     }
 }
