@@ -11,5 +11,6 @@
         public const string License_Number = "licenseNumber";
         public const string Vin="vin";
         public const string License_Plate= "licensePlate";
+        public const string RANDOM_STRING = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+=[{]};:<>|./?";
     }
 }

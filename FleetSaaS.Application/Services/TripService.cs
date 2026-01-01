@@ -21,7 +21,7 @@ namespace FleetSaaS.Application.Services
         public async Task<Guid> AddEditTrip(TripRequest tripRequest)
         {
             Trip trip = _mapper.Map<Trip>(tripRequest);
-
+            
             if (tripRequest.Id  == null)
             {
                 trip.CreatedAt = DateTime.UtcNow;
@@ -30,7 +30,7 @@ namespace FleetSaaS.Application.Services
             }
             else
             {
-                trip.UpdatedAt = DateTime.Now;
+                trip.UpdatedAt = DateTime.UtcNow;
                 await _tripRepository.UpdateTrip(trip);
             }
             return trip.Id;

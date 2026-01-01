@@ -11,15 +11,16 @@ using Microsoft.AspNetCore.Identity;
 namespace FleetSaaS.Application.Services
 {
     public class DispatcherService(
-        IDispatcherRepository dispatcherRepository,
-        IUserRepository userRepository,
-        IEmailService emailService,
+        IDispatcherRepository _dispatcherRepository,
+        IUserRepository _userRepository,
+        IEmailService _emailService,
+        ICommonService _commonService,
         IPasswordHasher<User> _passwordHasher,
         IMapper _mapper) : IDispatcherService
     {
         public async Task<DispatcherResponse> GetAllDispatchers(PagedRequest request)
         {
-            return await dispatcherRepository.GetAllDispatchers(request);
+            return await _dispatcherRepository.GetAllDispatchers(request);
         }
 
         public async Task<Guid> AddEditDispatcher(UserRequest userRequest)
@@ -27,25 +28,27 @@ namespace FleetSaaS.Application.Services
             var dispatcherRequest = _mapper.Map<User>(userRequest);
             if (userRequest?.Id==null)
             {
-                if (await userRepository.ExistsByEmailAsync(userRequest.Email,userRequest.Id))
+                if (await _userRepository.ExistsByEmailAsync(userRequest.Email,userRequest.Id))
                     throw new ApplicationException(MessageConstants.USER_EXISTS);
-               
+
+                string randomPassword = _commonService.GenerateRandomPassword(8);
+
                 dispatcherRequest.Password = _passwordHasher.HashPassword(
                       dispatcherRequest,
-                      userRequest.UserName+"@123"
+                      randomPassword
                   );
                 dispatcherRequest.RoleId = (int)RoleType.Dispatcher;
-                await userRepository.AddTenantAsUser(dispatcherRequest);
+                await _userRepository.AddTenantAsUser(dispatcherRequest);
 
                 //email by smtp
-                await emailService.SendAsync(
+                await _emailService.SendAsync(
                        userRequest.Email,
                        "Your Dispatcher Account Created",
                        $@"
                           <h3>Welcome {userRequest.UserName}</h3>
                           <p>Your dispatcher account has been created.</p>
                           <p><b>Username:</b> {userRequest.UserName}</p>
-                          <p><b>Password:</b> {userRequest.UserName+"@123"}</p>
+                          <p><b>Password:</b> {randomPassword}</p>
                           <p>Please change your password after first login.</p>
                         "
                    );
@@ -54,14 +57,14 @@ namespace FleetSaaS.Application.Services
             else
             {
                 userRequest.Id = dispatcherRequest.Id;
-                await userRepository.UpdateUser(dispatcherRequest);
+                await _userRepository.UpdateUser(dispatcherRequest);
             }
             return dispatcherRequest.Id;
         }
 
         public async Task DeleteDispatcher(Guid Id)
         {
-            await dispatcherRepository.DeleteDispatcher(Id);
+            await _dispatcherRepository.DeleteDispatcher(Id);
         }
 
     }

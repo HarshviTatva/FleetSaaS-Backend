@@ -12,5 +12,6 @@ namespace FleetSaaS.Application.DTOs.Request
         [Required]
         public string Destination { get; set; }
         public string? Description { get; set; }
+        public DateTime? ScheduledAt { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
 using FleetSaaS.Domain.Entities;
+using FleetSaaS.Domain.Enum;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace FleetSaaS.Infrastructure.Repositories
                 );
             }
 
+            if (pagedRequest.Status>0)
+            {
+                trips = trips.Where(t =>t.Status == (TripStatus)pagedRequest.Status);
+            }
+
             trips = pagedRequest.SortBy?.ToLower() switch
             {
 
@@ -37,8 +43,6 @@ namespace FleetSaaS.Infrastructure.Repositories
             var totalCount = await trips.CountAsync();
 
             var response = await trips
-                .Skip(pagedRequest.PageNumber * pagedRequest.PageSize)
-                .Take(pagedRequest.PageSize)
                 .Select(t => new TripDTO
                 {
                     Id = t.Id,
@@ -46,9 +50,12 @@ namespace FleetSaaS.Infrastructure.Repositories
                     Origin = t.Origin,
                     Destination = t.Destination,
                     Description = t.Description,
+                    ScheduledAt = t.ScheduledAt != null? t.ScheduledAt.Value.ToString(): null,
                     Status = t.Status      
                 })
                 .ToListAsync();
+
+            trips = trips.Skip((pagedRequest.PageNumber-1)*pagedRequest.PageSize).Take(pagedRequest.PageSize);
 
             return new TripResponse
             {
@@ -60,7 +67,7 @@ namespace FleetSaaS.Infrastructure.Repositories
             };
         }
 
-        public string GenerateTripName(string origin, string destination, DateTime? plannedDate)
+        public static string GenerateTripName(string origin, string destination, DateTime? plannedDate)
         {
             string from = string.IsNullOrWhiteSpace(origin)
             ? string.Empty

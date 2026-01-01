@@ -9,6 +9,7 @@ namespace FleetSaaS.Domain.Entities
         public string Origin { get; set; } = default!;
         public string Destination { get; set; } = default!;
         public string? Description { get; set; } = default!;
+        public DateTime? ScheduledAt { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public TripStatus Status { get; set; } = TripStatus.Planned;

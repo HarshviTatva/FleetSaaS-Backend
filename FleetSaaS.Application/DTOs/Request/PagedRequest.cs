@@ -18,5 +18,7 @@
         public string? SortBy { get; set; }
 
         public string SortDirection { get; set; } = "asc";
+
+        public int? Status { get; set; } = 0;
     }
 }

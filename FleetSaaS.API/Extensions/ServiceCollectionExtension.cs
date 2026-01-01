@@ -154,6 +154,7 @@ namespace FleetSaaS.API.Extensions
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ITripService, TripService>();
+            services.AddScoped<ICommonService, CommonService>();
 
             //repositories
             services.AddScoped<IAuthRepository, AuthRepository>();

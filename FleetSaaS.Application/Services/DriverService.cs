@@ -13,72 +13,75 @@ using Microsoft.AspNetCore.Identity;
 namespace FleetSaaS.Application.Services
 {
     public class DriverService(
-        IUserRepository userRepository,
-        IEmailService emailService,
+        IUserRepository _userRepository,
+        IEmailService _emailService,
         IPasswordHasher<User> _passwordHasher,
         IMapper _mapper,
-        IDriverRepository driverRepository
+        IDriverRepository _driverRepository,
+        ICommonService _commonService
         ) : IDriverService
     {
         public async Task<Guid> AddEditDriver(DriverUserRequest driverRequest)
         {
-            if (await userRepository.ExistsByEmailAsync(driverRequest.Email, driverRequest.Id))
+            if (await _userRepository.ExistsByEmailAsync(driverRequest.Email, driverRequest.Id))
                 throw new ConflictException(field: Fields.Email, message: MessageConstants.USER_EXISTS);
 
-            if (await driverRepository.ExistsByLicenseNumberAsync(driverRequest.LicenseNumber, driverRequest.Id))
+            if (await _driverRepository.ExistsByLicenseNumberAsync(driverRequest.LicenseNumber, driverRequest.Id))
                 throw new ConflictException(field: Fields.License_Number, message: DriverMessages.LICENSE_NO_EXISTS);
 
-            var driverUser = _mapper.Map<Driver>(driverRequest);
-            var userRequest = _mapper.Map<User>(driverRequest);
+            Driver driverUser = _mapper.Map<Driver>(driverRequest);
+            User userRequest = _mapper.Map<User>(driverRequest);
 
             if (driverRequest?.Id==null)
             {
+                string randomPassword = _commonService.GenerateRandomPassword(8);
                 userRequest.Password = _passwordHasher.HashPassword(
                       userRequest,
-                      driverRequest.UserName+"@123"
+                      randomPassword
                   );
                 userRequest.RoleId = (int)RoleType.Driver;
-                await userRepository.AddTenantAsUser(userRequest);
+                await _userRepository.AddTenantAsUser(userRequest);
 
                 //email by smtp
-                await emailService.SendAsync(
+                await _emailService.SendAsync(
                        driverRequest.Email,
                        "Your Driver Account Created",
                        $@"
                           <h3>Welcome {driverRequest.UserName}</h3>
                           <p>Your driver account has been created.</p>
                           <p><b>Username:</b> {driverRequest.UserName}</p>
-                          <p><b>Password:</b> {driverRequest.UserName+"@123"}</p>
+                          <p><b>Password:</b> {randomPassword}</p>
                           <p>Please change your password after first login.</p>
                         "
                    );
                
                 driverUser.UserId = userRequest.Id;
-                await driverRepository.AddDriver(driverUser);
+                await _driverRepository.AddDriver(driverUser);
                 return userRequest.Id;
             }
             else
             {
-                await driverRepository.UpdateDriver(driverUser);
+                await _driverRepository.UpdateDriver(driverUser);
                 userRequest.Id = driverRequest.UserId.Value;
-                await userRepository.UpdateUser(userRequest);
+                await _userRepository.UpdateUser(userRequest);
                 return (Guid)driverRequest.Id;
             }
         }
     
         public async Task DeleteDriver(Guid Id)
         {
-            await driverRepository.DeleteDriver(Id);
+            await _driverRepository.DeleteDriver(Id);
         }
 
         public async Task<DriverResponse> GetAllDrivers(PagedRequest request)
         {
-            return await driverRepository.GetAllDrivers(request);
+            return await _driverRepository.GetAllDrivers(request);
         }
 
         public async Task<VehicleDTO> GetAssignedVehicle()
         {
-            return await driverRepository.GetAssignedVehicle();
+            return await _driverRepository.GetAssignedVehicle();
         }
+
     }
 }

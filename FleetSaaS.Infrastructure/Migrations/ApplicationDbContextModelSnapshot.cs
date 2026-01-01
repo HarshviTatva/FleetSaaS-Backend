@@ -71,7 +71,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AuditLogs");
+                    b.ToTable("AuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Company", b =>
@@ -118,7 +118,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Driver", b =>
@@ -170,7 +170,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Drivers");
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Role", b =>
@@ -187,7 +187,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Trip", b =>
@@ -218,9 +218,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("DriverId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("EndTime")
                         .HasColumnType("timestamp with time zone");
 
@@ -230,6 +227,9 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<string>("Origin")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime?>("ScheduledAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("StartTime")
                         .HasColumnType("timestamp with time zone");
@@ -243,18 +243,11 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("VehicleId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("DriverId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Trips");
+                    b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.TripOdometerLog", b =>
@@ -304,7 +297,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("TripOdometerLogs");
+                    b.ToTable("TripOdometerLogs", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.User", b =>
@@ -363,7 +356,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Vehicle", b =>
@@ -425,7 +418,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.VehicleAssignment", b =>
@@ -473,7 +466,7 @@ namespace FleetSaaS.Infrastructure.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("VehicleAssignments");
+                    b.ToTable("VehicleAssignments", (string)null);
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.AuditLogs", b =>
@@ -519,14 +512,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("FleetSaaS.Domain.Entities.Driver", null)
-                        .WithMany("Trips")
-                        .HasForeignKey("DriverId");
-
-                    b.HasOne("FleetSaaS.Domain.Entities.Vehicle", null)
-                        .WithMany("Trips")
-                        .HasForeignKey("VehicleId");
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.TripOdometerLog", b =>
@@ -592,8 +577,6 @@ namespace FleetSaaS.Infrastructure.Migrations
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Driver", b =>
                 {
-                    b.Navigation("Trips");
-
                     b.Navigation("VehicleAssignments");
                 });
 
@@ -605,8 +588,6 @@ namespace FleetSaaS.Infrastructure.Migrations
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Vehicle", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("Trips");
                 });
 #pragma warning restore 612, 618
         }

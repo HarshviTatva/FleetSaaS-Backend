@@ -16,5 +16,6 @@ namespace FleetSaaS.Application.DTOs.Response
         public string Destination { get; set; } 
         public string Description { get; set; }
         public TripStatus Status { get; set; }
+        public string? ScheduledAt {  get; set; }
     }
 }

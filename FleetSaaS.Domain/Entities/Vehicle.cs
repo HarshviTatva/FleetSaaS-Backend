@@ -14,7 +14,6 @@ namespace FleetSaaS.Domain.Entities
         public bool IsActive { get; set; } = true;
         public ICollection<VehicleAssignment> Assignments { get; set; }
             = new List<VehicleAssignment>();
-        public ICollection<Trip> Trips { get; set; }
-            = new List<Trip>();
+        
     }
 }

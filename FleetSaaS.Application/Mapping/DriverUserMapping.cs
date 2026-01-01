@@ -12,10 +12,8 @@ namespace FleetSaaS.Application.Mapping
                 .ForMember(x => x.UserName, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(x => x.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(x => x.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
-                .ForMember(x => x.IsActive, opt => opt.MapFrom(src=>src.IsActive))
+                .ForMember(x => x.IsActive, opt => opt.MapFrom(_=>true))
                 .ForMember(x => x.CompanyId, opt => opt.MapFrom(src=>src.CompanyId));
-
-
         }
     }
 }
