@@ -7,4 +7,10 @@
         public Guid? CompanyId { get; set; }
         public Guid? Id { get; set; }
     }
+
+    public class AssignTripDriverRequest
+    {
+        public Guid VehicleAssignmentId { get; set; }
+        public Guid Id { get; set; }
+    }
 }

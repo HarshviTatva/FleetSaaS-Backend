@@ -30,6 +30,13 @@
 
         public const string DELETED_MESSAGE = "{0} deleted successfully.";
 
+        public const string CANCELLED_MESSAGE = "{0} cancelled successfully.";
+
+        public const string ASSIGNED_MESSAGE = "{0} assigned successfully to driver.";
+
+        public const string REASSIGNED_MESSAGE = "{0} reassigned successfully to driver.";
+
+        public const string UNASSIGNED_MESSAGE = "{0} unassigned successfully to driver.";
         #region File
         public const string FILE_IS_NULL = "File is null or empty.";
 
@@ -49,6 +56,7 @@
     {
         public const string CORS_POLICY_NAME = "AllowFleetSaaSApp";
         public const string SERILOG_MESSAGE = "HTTP {RequestMethod} {RequestPath} responded {StatusCode}";
+
     }
 
     public class TenantCommonMessages
@@ -60,16 +68,13 @@
 
     public class DriverMessages
     {
-        public const string LICENSE_NO_EXISTS = "License number already exists.";
+        public const string LICENSE_NO_EXISTS = "License number already exists!";
     }
 
     public class VehicleMessages
     {
-        public const string LICENSE_PLATE_EXISTS = "License plate already exists.";
-        public const string VIN_EXISTS = "Duplicate Vehicle Identification number.";
-        public const string ASSIGNED_MESSAGE = "Vehicle assigned successfully to driver.";
-        public const string REASSIGNED_MESSAGE = "Vehicle reassigned successfully to driver.";
-        public const string UNASSIGNED_MESSAGE = "Vehicle unassigned successfully to driver.";
+        public const string LICENSE_PLATE_EXISTS = "License plate already exists!";
+        public const string VIN_EXISTS = "Duplicate Vehicle Identification number!";
     }
 
     public class ValidationMessages 

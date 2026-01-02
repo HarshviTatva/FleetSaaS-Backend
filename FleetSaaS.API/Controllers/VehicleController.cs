@@ -62,7 +62,7 @@ namespace FleetSaaS.API.Controllers
                 new SuccessApiResponse<Guid>
                 (
                 httpStatusCode: StatusCodes.Status201Created,
-                message:new List<string> { VehicleMessages.ASSIGNED_MESSAGE },
+                message:new List<string> { string.Format(MessageConstants.ASSIGNED_MESSAGE,"Vehicle") },
                 data : await vehicleService.AssignVehicleToDriver(assignVehicleRequest)
                 )
             );
@@ -76,7 +76,7 @@ namespace FleetSaaS.API.Controllers
                 new SuccessApiResponse<Guid>
                 (
                 httpStatusCode: StatusCodes.Status200OK,
-                message: new List<string> { VehicleMessages.REASSIGNED_MESSAGE },
+                message: new List<string> { string.Format(MessageConstants.REASSIGNED_MESSAGE, "Vehicle") },
                 data: await vehicleService.ReAssignVehicleToDriver(assignVehicleRequest)
                 )
             );
@@ -91,7 +91,7 @@ namespace FleetSaaS.API.Controllers
                 new SuccessApiResponse<object>
                 (
                 httpStatusCode: StatusCodes.Status200OK,
-                message: new List<string> { VehicleMessages.UNASSIGNED_MESSAGE },
+                message: new List<string> { string.Format(MessageConstants.UNASSIGNED_MESSAGE, "Vehicle") },
                 data: id
                 )
             );

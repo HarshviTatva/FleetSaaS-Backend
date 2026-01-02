@@ -6,7 +6,6 @@ using FleetSaaS.Domain.Entities;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-
 namespace FleetSaaS.Infrastructure.Repositories
 {
     public class VehicleRepository(
@@ -28,49 +27,62 @@ namespace FleetSaaS.Infrastructure.Repositories
         {
             Guid companyId = _tenantProvider.CompanyId;
 
-            //fetching all vehicles of particular company
-            var vehicles = await (
-            from v in _dbContext.Vehicles
-            where v.CompanyId == companyId
-               && !v.IsDeleted
-
-            select new VehicleDTO
-            {
-                Id = v.Id,
-                Vin = v.Vin,
-                LicensePlate = v.LicensePlate,
-                Make = v.Make,
-                Model = v.Model,
-                InsuranceExpiryDate =v.InsuranceExpiryDate,
-                Year = v.Year,
-                IsActive = v.IsActive
-            }).ToListAsync();
+            IQueryable<VehicleDTO> query =
+                from v in _dbContext.Vehicles
+                where v.CompanyId == companyId && !v.IsDeleted
+                select new VehicleDTO
+                {
+                    Id = v.Id,
+                    Vin = v.Vin,
+                    LicensePlate = v.LicensePlate,
+                    Make = v.Make,
+                    Model = v.Model,
+                    InsuranceExpiryDate = v.InsuranceExpiryDate,
+                    Year = v.Year,
+                    IsActive = v.IsActive
+                };
 
             if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
             {
                 var search = pagedRequest.Search.Trim().ToLower();
 
-                vehicles = vehicles.Where(x =>
+                query = query.Where(x =>
                     x.Model.ToLower().Contains(search) ||
                     x.Make.ToLower().Contains(search) ||
                     x.LicensePlate.ToLower().Contains(search) ||
                     x.Vin.ToLower().Contains(search)
-                ).ToList();
+                );
             }
 
-            // Sorting
-            vehicles = pagedRequest.SortBy switch
+            query = pagedRequest.SortBy switch
             {
-                "Model" => pagedRequest.SortDirection == "desc"
-                                ? vehicles.OrderByDescending(x => x.Model).ToList()
-                                : vehicles.OrderBy(x => x.Model).ToList(),
-
-                _ => vehicles.OrderByDescending(x => x.Id).ToList()
+                "make" => pagedRequest.SortDirection == "desc"
+                                ? query.OrderByDescending(x => x.Make)
+                                : query.OrderBy(x => x.Make),
+                "vin" => pagedRequest.SortDirection == "desc"
+                               ? query.OrderByDescending(x => x.Vin)
+                               : query.OrderBy(x => x.Vin),
+                "insuranceExpiryDate" => pagedRequest.SortDirection == "desc"
+                               ? query.OrderByDescending(x => x.InsuranceExpiryDate)
+                               : query.OrderBy(x => x.InsuranceExpiryDate),
+                "licensePlate" => pagedRequest.SortDirection == "desc"
+                               ? query.OrderByDescending(x => x.LicensePlate)
+                               : query.OrderBy(x => x.LicensePlate),
+                "model" => pagedRequest.SortDirection == "desc"
+                                ? query.OrderByDescending(x => x.Model)
+                                : query.OrderBy(x => x.Model),
+                "year" => pagedRequest.SortDirection == "desc"
+                                ? query.OrderByDescending(x => x.Year)
+                                : query.OrderBy(x => x.Year),
+                _ => query.OrderByDescending(x => x.Id)
             };
 
-            var totalCount = (vehicles.ToList()).Count();
+            var totalCount = await query.CountAsync();
 
-            vehicles = vehicles.Skip((pagedRequest.PageNumber-1)*pagedRequest.PageSize).Take(pagedRequest.PageSize).ToList();
+            var vehicles = await query
+                .Skip((pagedRequest.PageNumber - 1) * pagedRequest.PageSize)
+                .Take(pagedRequest.PageSize)
+                .ToListAsync();
 
             return new VehicleResponse
             {
@@ -144,6 +156,7 @@ namespace FleetSaaS.Infrastructure.Repositories
             if (assignedVehicleDetails != null)
             {
                 assignedVehicleDetails.VehicleId = vehicleAssignment.VehicleId;
+                assignedVehicleDetails.UpdatedAt = DateTime.UtcNow;
                 assignedVehicleDetails.UpdatedBy = _tenantProvider.CompanyId;
             }
             await _dbContext.SaveChangesAsync();

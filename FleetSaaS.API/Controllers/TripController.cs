@@ -1,5 +1,6 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.Interfaces.IServices;
+using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,48 @@ namespace FleetSaaS.API.Controllers
                 },
                 data: await _tripService.AddEditTrip(tripRequest)
             ));
+        }
+
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> CancelTrip(Guid id)
+        {
+            await _tripService.CancelTrip(id);
+            return Ok(new SuccessApiResponse<object>(
+            httpStatusCode: StatusCodes.Status201Created,
+            message: new List<string> { string.Format(MessageConstants.CANCELLED_MESSAGE, "Trip") },
+            data: id));
+        }
+
+        //assign, reassign, unassign trips to driver
+        [HttpPost("assign-driver")]
+        public async Task<IActionResult> AssignTripToDriver([FromBody] AssignTripDriverRequest assignTripRequest)
+        {
+            await _tripService.AssignTripToDriver(assignTripRequest);
+            return Ok
+            (
+                new SuccessApiResponse<object>
+                (
+                httpStatusCode: StatusCodes.Status201Created,
+                message: new List<string> { string.Format(MessageConstants.ASSIGNED_MESSAGE, "Trip") },
+                data:null
+                )
+            );
+        }
+
+        [HttpPatch("unassign-driver/{tripId}")]
+        public async Task<IActionResult> UnAssignTripToDriver(Guid tripId)
+        {
+            await _tripService.UnAssignTripToDriver(tripId);
+            return Ok
+            (
+                new SuccessApiResponse<object>
+                (
+                httpStatusCode: StatusCodes.Status201Created,
+                message: new List<string> { string.Format(MessageConstants.UNASSIGNED_MESSAGE, "Trip") },
+                data: null
+                )
+            );
         }
     }
 }

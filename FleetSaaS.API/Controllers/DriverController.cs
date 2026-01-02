@@ -1,6 +1,6 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
+using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IServices;
-using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Infrastructure.Common.Response;
 using Microsoft.AspNetCore.Authorization;
@@ -11,8 +11,9 @@ namespace FleetSaaS.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
-    public class DriverController(IDriverService _driverService) : ControllerBase
+    public class DriverController(IDriverService _driverService, ITripService _tripService) : ControllerBase
     {
+        [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
         [HttpGet("drivers")]
         public async Task<IActionResult> GetAllDriver([FromQuery] PagedRequest request)
         {
@@ -23,6 +24,7 @@ namespace FleetSaaS.API.Controllers
                     ));
         }
 
+        [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
         [HttpPost("driver")]
         public async Task<IActionResult> AddEditDriverUser(DriverUserRequest driverRequest)
         {
@@ -39,6 +41,7 @@ namespace FleetSaaS.API.Controllers
             ));
         }
 
+        [Authorize(Roles = "CompanyOwner,Dispatcher,Admin")]
         [HttpPatch("{id}")]
         public async Task<IActionResult> DeleteDriver(Guid id)
         { 
@@ -58,6 +61,17 @@ namespace FleetSaaS.API.Controllers
                       httpStatusCode: StatusCodes.Status201Created,
                       message: new List<string> { MessageConstants.DATA_RETRIEVED },
                       data: await _driverService.GetAssignedVehicle()
+                      ));
+        }
+
+        [Authorize(Roles = "Driver")]
+        [HttpGet("assigned-trips")]
+        public async Task<IActionResult> GetAllAssignedTrips([FromQuery] PagedRequest pagedRequest)
+        {
+            return Ok(new SuccessApiResponse<TripResponse>(
+                      httpStatusCode: StatusCodes.Status201Created,
+                      message: new List<string> { MessageConstants.DATA_RETRIEVED },
+                      data: await _tripService.GetAllTrips(pagedRequest)
                       ));
         }
     }

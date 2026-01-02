@@ -17,5 +17,8 @@ namespace FleetSaaS.Application.DTOs.Response
         public string Description { get; set; }
         public TripStatus Status { get; set; }
         public string? ScheduledAt {  get; set; }
+        public string? VehicleDriverName { get; set; }
+        public Guid? VehicleAssignmentId { get; set; }
+        public Guid? DriverUserId { get; set; }
     }
 }

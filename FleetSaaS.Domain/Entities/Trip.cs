@@ -15,5 +15,7 @@ namespace FleetSaaS.Domain.Entities
         public TripStatus Status { get; set; } = TripStatus.Planned;
         public ICollection<TripOdometerLog> OdometerLogs { get; set; }
             = new List<TripOdometerLog>();
+        public Guid? VehicleAssignmentId { get; set; }
+        public VehicleAssignment VehicleAssignment { get; set; }
     }
 }

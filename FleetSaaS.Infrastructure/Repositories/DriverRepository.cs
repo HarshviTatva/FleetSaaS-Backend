@@ -75,10 +75,21 @@ namespace FleetSaaS.Infrastructure.Repositories
             // Sorting
             drivers = pagedRequest.SortBy switch
             {
-                "UserName" => pagedRequest.SortDirection == "desc"
+                "userName" => pagedRequest.SortDirection == "desc"
                                 ? drivers.OrderByDescending(x => x.UserName).ToList()
                                 : drivers.OrderBy(x => x.UserName).ToList(),
-
+                "email" => pagedRequest.SortDirection == "desc"
+                                ? drivers.OrderByDescending(x => x.Email).ToList()
+                                : drivers.OrderBy(x => x.Email).ToList(),
+                "licenseExpiryDateString" => pagedRequest.SortDirection == "desc"
+                                ? drivers.OrderByDescending(x => x.LicenseExpiryDate).ToList()
+                                : drivers.OrderBy(x => x.LicenseExpiryDate).ToList(),
+                "licenseNumber" => pagedRequest.SortDirection == "desc"
+                                ? drivers.OrderByDescending(x => x.LicenseNumber).ToList()
+                                : drivers.OrderBy(x => x.LicenseNumber).ToList(),
+                "phoneNumber" => pagedRequest.SortDirection == "desc"
+                                ? drivers.OrderByDescending(x => x.PhoneNumber).ToList()
+                                : drivers.OrderBy(x => x.PhoneNumber).ToList(),
                 _ => drivers.OrderByDescending(x => x.Id).ToList()
             };
 
@@ -147,7 +158,7 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         public async Task<VehicleDTO> GetAssignedVehicle()
         {
-            var companyId = _tenantProvider.CompanyId;
+            Guid companyId = _tenantProvider.CompanyId;
 
             var userIdClaim = _httpContextAccessor.HttpContext?.User?
                                 .FindFirst("UserId")?.Value;
@@ -171,7 +182,5 @@ namespace FleetSaaS.Infrastructure.Repositories
 
             return _mapper.Map<VehicleDTO>(vehicle);
         }
-
-
     }
 }

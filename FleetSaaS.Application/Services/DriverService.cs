@@ -82,6 +82,5 @@ namespace FleetSaaS.Application.Services
         {
             return await _driverRepository.GetAssignedVehicle();
         }
-
     }
 }

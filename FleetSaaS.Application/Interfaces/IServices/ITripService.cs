@@ -7,5 +7,8 @@ namespace FleetSaaS.Application.Interfaces.IServices
     {
         Task<TripResponse> GetAllTrips(PagedRequest request);
         Task<Guid> AddEditTrip(TripRequest tripRequest);
+        Task CancelTrip(Guid id);
+        Task AssignTripToDriver(AssignTripDriverRequest assignTripDriverRequest);
+        Task UnAssignTripToDriver(Guid tripId);
     }
 }

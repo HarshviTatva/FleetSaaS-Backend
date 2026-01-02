@@ -3,11 +3,8 @@ using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
 using FleetSaaS.Application.Interfaces.IServices;
-using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Enum;
-using FleetSaaS.Domain.Exceptions;
-using FleetSaaS.Infrastructure.Common;
 
 namespace FleetSaaS.Application.Services
 {
@@ -36,5 +33,19 @@ namespace FleetSaaS.Application.Services
             return trip.Id;
         }
 
+        public async Task CancelTrip(Guid id)
+        {
+            await _tripRepository.CancelTrip(id);
+        }
+
+        public async Task AssignTripToDriver(AssignTripDriverRequest assignTripDriverRequest)
+        {
+            await _tripRepository.AssignTripToDriver(assignTripDriverRequest);
+        }
+
+        public async Task UnAssignTripToDriver(Guid tripId)
+        {
+            await _tripRepository.UnAssignTripToDriver(tripId);
+        }
     }
 }

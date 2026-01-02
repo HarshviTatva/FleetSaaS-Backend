@@ -1,13 +1,17 @@
 ﻿using FleetSaaS.API.Middleware;
 using FleetSaaS.Application.Interfaces.IRepositories;
+using FleetSaaS.Application.Interfaces.IRepositories.Generic;
 using FleetSaaS.Application.Interfaces.IServices;
+using FleetSaaS.Application.Interfaces.IServices.Generic;
 using FleetSaaS.Application.Mapping;
 using FleetSaaS.Application.Services;
+using FleetSaaS.Application.Services.Generic;
 using FleetSaaS.Application.Validators;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
 using FleetSaaS.Infrastructure.Repositories;
+using FleetSaaS.Infrastructure.Repositories.Generic;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
@@ -146,6 +150,7 @@ namespace FleetSaaS.API.Extensions
         {
             //services
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IGenericService, GenericService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService,CompanyService>();
@@ -157,6 +162,7 @@ namespace FleetSaaS.API.Extensions
             services.AddScoped<ICommonService, CommonService>();
 
             //repositories
+            services.AddScoped<IGenericRepository, GenericRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
@@ -164,6 +170,7 @@ namespace FleetSaaS.API.Extensions
             services.AddScoped<IDispatcherRepository, DispatcherRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<ITripRepository, TripRepository>();
+            services.AddScoped<ICommonRepository,CommonRepository>();
         }
     }
 }
