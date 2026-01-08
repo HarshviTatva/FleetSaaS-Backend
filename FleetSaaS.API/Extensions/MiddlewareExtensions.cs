@@ -9,7 +9,7 @@ namespace FleetSaaS.API.Extensions
         public static void ConfigureMiddleware(this WebApplication app)
         {
             app.UseMiddleware<GlobalExceptionHandler>();
-            app.UseMiddleware<TenantResolutionMiddleware>();
+            //app.UseMiddleware<TenantResolutionTestMiddleware>();
 
             // Serilog request logging
             app.UseSerilogRequestLogging(options =>

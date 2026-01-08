@@ -14,4 +14,16 @@ namespace FleetSaaS.Application.DTOs.Request
         public string? Description { get; set; }
         public DateTime? ScheduledAt { get; set; }
     }
+
+    public class ChangeTripStatusRequest
+    {
+        public long? DistanceCovered { get; set; }
+    }
+
+    public class CancelTripRequest
+    {
+        public Guid Id { get; set; }
+        public string? CancelReason { get; set; }
+    }
+
 }

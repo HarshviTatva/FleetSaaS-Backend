@@ -1,7 +1,7 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.Interfaces.IServices;
-using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
+using FleetSaaS.Domain.Enum;
 using FleetSaaS.Infrastructure.Common.Response;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +9,7 @@ namespace FleetSaaS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TripController(ITripService _tripService) : ControllerBase
+    public class TripController(ITripService _tripService, ICommonService _commonService) : ControllerBase
     {
         //trips
         [HttpGet("trips")]
@@ -39,14 +39,14 @@ namespace FleetSaaS.API.Controllers
         }
 
 
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> CancelTrip(Guid id)
+        [HttpPatch("cancel-trip")]
+        public async Task<IActionResult> CancelTrip([FromBody] CancelTripRequest cancelTripRequest)
         {
-            await _tripService.CancelTrip(id);
+            await _tripService.CancelTrip(cancelTripRequest);
             return Ok(new SuccessApiResponse<object>(
             httpStatusCode: StatusCodes.Status201Created,
             message: new List<string> { string.Format(MessageConstants.CANCELLED_MESSAGE, "Trip") },
-            data: id));
+            data: cancelTripRequest.Id));
         }
 
         //assign, reassign, unassign trips to driver
@@ -60,7 +60,7 @@ namespace FleetSaaS.API.Controllers
                 (
                 httpStatusCode: StatusCodes.Status201Created,
                 message: new List<string> { string.Format(MessageConstants.ASSIGNED_MESSAGE, "Trip") },
-                data:null
+                data: null
                 )
             );
         }
@@ -78,6 +78,34 @@ namespace FleetSaaS.API.Controllers
                 data: null
                 )
             );
+        }
+
+        [HttpPatch("trip-status/{id}/{status}")]
+        public async Task<IActionResult> ChangeTripStatus(Guid id, TripStatus status, [FromBody] ChangeTripStatusRequest request)
+        {
+            await _tripService.ChangeTripStatus(id, status, request.DistanceCovered);
+            return Ok(new SuccessApiResponse<object>(
+            httpStatusCode: StatusCodes.Status201Created,
+            message: new List<string> { await _commonService.GetTripStatusMessage(status) },
+            data: id));
+        }
+
+        [HttpPost("export/trips")]
+        public async Task<IActionResult> ExportTripCSV([FromBody] PagedRequest pagedRequest)
+        {
+            var csvBytes = await _tripService.ExportTripsToCsvAsync(pagedRequest);
+            return File(csvBytes, "text/csv", "Trip.csv");
+        }
+
+        [HttpGet("report/pdf/{tripId}")]
+        public async Task<IActionResult> DownloadTripPdf(Guid tripId)
+        {
+            var pdf = await _tripService.GeneratePdfReport(tripId);
+
+            return File(
+                pdf,
+                "application/pdf",
+                $"trip_{tripId}.pdf");
         }
     }
 }

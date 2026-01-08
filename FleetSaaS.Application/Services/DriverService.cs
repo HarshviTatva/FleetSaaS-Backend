@@ -2,6 +2,7 @@
 using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IRepositories;
+using FleetSaaS.Application.Interfaces.IRepositories.Generic;
 using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
@@ -14,6 +15,8 @@ namespace FleetSaaS.Application.Services
 {
     public class DriverService(
         IUserRepository _userRepository,
+        IGenericRepository<User> _genericRepo,
+        IGenericRepository<Driver> _driverGenericRepo,
         IEmailService _emailService,
         IPasswordHasher<User> _passwordHasher,
         IMapper _mapper,
@@ -23,7 +26,7 @@ namespace FleetSaaS.Application.Services
     {
         public async Task<Guid> AddEditDriver(DriverUserRequest driverRequest)
         {
-            if (await _userRepository.ExistsByEmailAsync(driverRequest.Email, driverRequest.Id))
+            if (await _userRepository.ExistsByEmailAsync(driverRequest.Email, driverRequest.UserId))
                 throw new ConflictException(field: Fields.Email, message: MessageConstants.USER_EXISTS);
 
             if (await _driverRepository.ExistsByLicenseNumberAsync(driverRequest.LicenseNumber, driverRequest.Id))
@@ -40,9 +43,13 @@ namespace FleetSaaS.Application.Services
                       randomPassword
                   );
                 userRequest.RoleId = (int)RoleType.Driver;
-                await _userRepository.AddTenantAsUser(userRequest);
+                userRequest.CompanyId = driverUser.CompanyId = _genericRepo.GetCompanyId();
+                await _genericRepo.AddAsync(userRequest);
+                //await _userRepository.AddTenantAsUser(userRequest);
 
                 //email by smtp
+                string loginUrl = $"http://localhost:4200/login";
+
                 await _emailService.SendAsync(
                        driverRequest.Email,
                        "Your Driver Account Created",
@@ -52,11 +59,25 @@ namespace FleetSaaS.Application.Services
                           <p><b>Username:</b> {driverRequest.UserName}</p>
                           <p><b>Password:</b> {randomPassword}</p>
                           <p>Please change your password after first login.</p>
+                          <a href='{loginUrl}'
+                             style='display:inline-block;
+                                    padding:12px 20px;
+                                    background-color:#ef5350;
+                                    color:#ffffff;
+                                    text-decoration:none;
+                                    font-size:16px;
+                                    font-weight:600;
+                                    border-radius:6px;
+                                    font-family:Arial, sans-serif;
+                                    '>
+                              Login
+                          </a>
                         "
                    );
                
                 driverUser.UserId = userRequest.Id;
-                await _driverRepository.AddDriver(driverUser);
+                await _driverGenericRepo.AddAsync(driverUser);
+                //await _driverRepository.AddDriver(driverUser);
                 return userRequest.Id;
             }
             else

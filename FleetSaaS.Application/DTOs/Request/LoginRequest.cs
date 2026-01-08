@@ -9,4 +9,9 @@ namespace FleetSaaS.Application.DTOs.Request
         [Required]
         public string Password { get; set; }
     }
+
+    public class RefreshTokenRequest
+    {
+        public string RefreshToken { get; set; }
+    }
 }

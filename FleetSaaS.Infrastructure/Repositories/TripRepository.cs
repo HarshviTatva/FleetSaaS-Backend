@@ -4,98 +4,17 @@ using FleetSaaS.Application.Interfaces.IRepositories;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Enum;
+using FleetSaaS.Domain.Helper;
 using FleetSaaS.Infrastructure.Common;
 using FleetSaaS.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace FleetSaaS.Infrastructure.Repositories
 {
     public class TripRepository(ITenantProvider _tenantProvider,ApplicationDbContext _dbContext, IHttpContextAccessor _httpContextAccessor) : ITripRepository
     {
-        //public async Task<TripResponse> GetAllTrips(PagedRequest pagedRequest)
-        //{
-        //    Guid companyId = _tenantProvider.CompanyId;
-
-        //    IQueryable<TripDTO> query =
-        //        from t in _dbContext.Trips.AsNoTracking()
-
-        //        join va in _dbContext.VehicleAssignments
-        //            on t.VehicleAssignmentId equals va.Id into vaGroup
-        //        from va in vaGroup.DefaultIfEmpty()
-
-        //        join v in _dbContext.Vehicles
-        //            on va.VehicleId equals v.Id into vGroup
-        //        from v in vGroup.DefaultIfEmpty()
-
-        //        join d in _dbContext.Drivers
-        //            on va.DriverId equals d.Id into dGroup
-        //        from d in dGroup.DefaultIfEmpty()
-
-        //        where t.CompanyId == companyId
-
-        //        select new TripDTO
-        //        {
-        //            Id = t.Id,
-        //            Name = GenerateTripName(t.Origin, t.Destination, t.CreatedAt),
-        //            Origin = t.Origin,
-        //            Destination = t.Destination,
-        //            Description = t.Description,
-        //            ScheduledAt = t.ScheduledAt != null
-        //                ? t.ScheduledAt.Value.ToString()
-        //                : null,
-        //            Status = t.Status,
-        //            VehicleAssignmentId = va != null ? va.Id : null,
-        //            VehicleDriverName = v != null
-        //                ? $"{v.Model} - {v.LicensePlate} | {d.User.UserName}"
-        //                : null
-        //        };
-
-
-        //    if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
-        //    {
-        //        var search = pagedRequest.Search.Trim().ToLower();
-
-        //        query = query.Where(t =>
-        //            t.Origin.ToLower().Contains(search) ||
-        //            t.Destination.ToLower().Contains(search)
-        //        );
-        //    }
-
-        //    if (pagedRequest.Status > 0)
-        //    {
-        //        query = query.Where(t => t.Status == (TripStatus)pagedRequest.Status);
-        //    }
-
-        //    query = pagedRequest.SortBy?.ToLower() switch
-        //    {
-        //        "origin" => pagedRequest.SortDirection == "asc"
-        //            ? query.OrderBy(t => t.Origin)
-        //            : query.OrderByDescending(t => t.Origin),
-
-        //        "destination" => pagedRequest.SortDirection == "asc"
-        //            ? query.OrderBy(t => t.Destination)
-        //            : query.OrderByDescending(t => t.Destination),
-
-        //        _ => query.OrderByDescending(t => t.Id)
-        //    };
-
-        //    var totalCount = await query.CountAsync();
-
-        //    var trips = await query
-        //                    .Skip((pagedRequest.PageNumber - 1) * pagedRequest.PageSize)
-        //                    .Take(pagedRequest.PageSize)
-        //                    .ToListAsync();
-
-        //    return new TripResponse
-        //    {
-        //        Trips = trips,
-        //        CompanyId = companyId,
-        //        TotalCount = totalCount,
-        //        PageNumber = pagedRequest.PageNumber,
-        //        PageSize = pagedRequest.PageSize
-        //    };
-        //}
         public async Task<TripResponse> GetAllTrips(PagedRequest pagedRequest)
         {
             Guid companyId = _tenantProvider.CompanyId;
@@ -131,12 +50,10 @@ namespace FleetSaaS.Infrastructure.Repositories
                     on d.UserId equals u.Id into uGroup
                 from u in uGroup.DefaultIfEmpty()
 
-                where t.CompanyId == companyId
-
                 select new TripDTO
                 {
                     Id = t.Id,
-                    Name = GenerateTripName(t.Origin, t.Destination, t.CreatedAt),
+                    Name = GenerateTripNameHelper.GenerateTripName(t.Origin, t.Destination, t.CreatedAt),
                     Origin = t.Origin,
                     Destination = t.Destination,
                     Description = t.Description,
@@ -144,21 +61,35 @@ namespace FleetSaaS.Infrastructure.Repositories
                         ? t.ScheduledAt.Value.ToString()
                         : null,
                     Status = t.Status,
-
                     VehicleAssignmentId = va != null ? va.Id : null,
-
+                    ScheduleDateFilter = t.ScheduledAt,
                     VehicleDriverName =
                         (v != null && u != null)
                             ? $"{v.Model} - {v.LicensePlate} | {u.UserName}"
                             : null,
 
-                    DriverUserId = u != null ? u.Id : null
+                    DriverUserId = u != null ? u.Id : null,
+                    DistanceCovered = t.DistanceCovered,
+                    CreatedAt = t.CreatedAt
                 };
             if (role == RoleType.Driver)
             {
-                query = query.Where(t =>
+                if (pagedRequest.ShowCompletedRecords is true)
+                {
+                    var today = DateTime.UtcNow.Date;
+
+                    query = query.Where(t =>
+                        t.VehicleAssignmentId != null &&
+                        t.DriverUserId == userId &&
+                        t.ScheduleDateFilter < today 
+                    );
+                }
+                else
+                {
+                    query = query.Where(t =>
                     t.VehicleAssignmentId != null &&
-                    t.DriverUserId == userId);
+                    t.DriverUserId == userId && t.Status != TripStatus.Completed);
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(pagedRequest.Search))
@@ -174,6 +105,14 @@ namespace FleetSaaS.Infrastructure.Repositories
             {
                 query = query.Where(t =>
                     t.Status == (TripStatus)pagedRequest.Status);
+            }
+
+            if (DateTime.TryParse(pagedRequest.Date, out _))
+            {
+                query = query.Where(v =>
+                    !string.IsNullOrWhiteSpace(v.ScheduledAt) &&
+                    v.ScheduledAt.StartsWith(pagedRequest.Date)
+                );
             }
 
             query = pagedRequest.SortBy?.ToLower() switch
@@ -206,24 +145,6 @@ namespace FleetSaaS.Infrastructure.Repositories
             };
         }
 
-
-        public static string GenerateTripName(string origin, string destination, DateTime? plannedDate)
-        {
-            string from = string.IsNullOrWhiteSpace(origin)
-            ? string.Empty
-            : origin.Trim()[..Math.Min(3, origin.Trim().Length)].ToUpper();
-
-            string to = string.IsNullOrWhiteSpace(destination)
-                ? string.Empty
-                : destination.Trim()[..Math.Min(3, destination.Trim().Length)].ToUpper();
-
-            string datePart = plannedDate.HasValue
-                ? plannedDate.Value.Day.ToString("D3") 
-                : "000";
-
-            return $"{from}TO{to}{datePart}";
-        }
-
         public async Task AddTrip(Trip trip)
         {
             trip.CompanyId = _tenantProvider.CompanyId;
@@ -238,17 +159,16 @@ namespace FleetSaaS.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task CancelTrip(Guid tripId)
+        public async Task CancelTrip(CancelTripRequest cancelTripRequest)
         {
-            Guid companyId = _tenantProvider.CompanyId;
-
             var trip = await _dbContext.Trips
-                .FirstOrDefaultAsync(u => u.Id == tripId && u.CompanyId==companyId);
+                .FirstOrDefaultAsync(u => u.Id == cancelTripRequest.Id);
 
             if (trip != null)
             {
                 trip.Status = TripStatus.Cancelled;
                 trip.IsDeleted = true;
+                trip.CancelReason = cancelTripRequest.CancelReason;
             }
 
             await _dbContext.SaveChangesAsync();

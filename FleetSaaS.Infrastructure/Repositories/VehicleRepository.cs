@@ -29,7 +29,8 @@ namespace FleetSaaS.Infrastructure.Repositories
 
             IQueryable<VehicleDTO> query =
                 from v in _dbContext.Vehicles
-                where v.CompanyId == companyId && !v.IsDeleted
+                where
+                !v.IsDeleted
                 select new VehicleDTO
                 {
                     Id = v.Id,
@@ -53,6 +54,14 @@ namespace FleetSaaS.Infrastructure.Repositories
                     x.Vin.ToLower().Contains(search)
                 );
             }
+
+            if (DateOnly.TryParse(pagedRequest.Date, out var date))
+            {
+                query = query.Where(v =>
+                    v.InsuranceExpiryDate == date
+                );
+            }
+
 
             query = pagedRequest.SortBy switch
             {
@@ -99,7 +108,7 @@ namespace FleetSaaS.Infrastructure.Repositories
             Guid companyId = _tenantProvider.CompanyId;
 
             var vehicle = await _dbContext.Vehicles
-                .FirstOrDefaultAsync(u => u.Id == vehicleId && !u.IsDeleted && u.CompanyId==companyId);
+                .FirstOrDefaultAsync(u => u.Id == vehicleId && !u.IsDeleted);
 
             if (vehicle != null)
             {
@@ -126,11 +135,9 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         public async Task<List<DropdownResponse>> GetAllVehiclesDropdown()
         {
-            Guid companyId = _tenantProvider.CompanyId;
             return await _dbContext.Vehicles
               .Where(v =>
                   v.IsActive && !v.IsDeleted &&
-                  (v.CompanyId == companyId) &&
                   !_dbContext.VehicleAssignments.Any(a =>
                       a.VehicleId == v.Id &&
                       a.IsActive))
@@ -164,10 +171,8 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         public async Task UnAssignVehicleToDriver(Guid id)
         {
-            Guid companyId = _tenantProvider.CompanyId;
-
             VehicleAssignment? assignedVehicleDetails = await _dbContext.VehicleAssignments
-                .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted && u.CompanyId==companyId);
+                .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
 
             if (assignedVehicleDetails != null)
             {

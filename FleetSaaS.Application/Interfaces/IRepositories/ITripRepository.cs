@@ -9,7 +9,7 @@ namespace FleetSaaS.Application.Interfaces.IRepositories
         Task<TripResponse> GetAllTrips(PagedRequest pagedRequest);
         Task UpdateTrip(Trip trip);
         Task AddTrip(Trip trip);
-        Task CancelTrip(Guid tripId);
+        Task CancelTrip(CancelTripRequest cancelTripRequest);
         Task AssignTripToDriver(AssignTripDriverRequest assignTripDriverRequest);
         Task UnAssignTripToDriver(Guid tripId);
     }

@@ -196,6 +196,10 @@ namespace FleetSaaS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("CancelReason")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
 
@@ -217,6 +221,9 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<string>("Destination")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<long?>("DistanceCovered")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("EndTime")
                         .HasColumnType("timestamp with time zone");
@@ -253,56 +260,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.HasIndex("VehicleAssignmentId");
 
                     b.ToTable("Trips");
-                });
-
-            modelBuilder.Entity("FleetSaaS.Domain.Entities.TripOdometerLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("LogType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("LoggedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("OdometerValue")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("TripId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TripId");
-
-                    b.ToTable("TripOdometerLogs");
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.User", b =>
@@ -343,6 +300,12 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("RefreshTokenExpiryTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
@@ -525,17 +488,6 @@ namespace FleetSaaS.Infrastructure.Migrations
                     b.Navigation("VehicleAssignment");
                 });
 
-            modelBuilder.Entity("FleetSaaS.Domain.Entities.TripOdometerLog", b =>
-                {
-                    b.HasOne("FleetSaaS.Domain.Entities.Trip", "Trip")
-                        .WithMany("OdometerLogs")
-                        .HasForeignKey("TripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Trip");
-                });
-
             modelBuilder.Entity("FleetSaaS.Domain.Entities.User", b =>
                 {
                     b.HasOne("FleetSaaS.Domain.Entities.Company", "Company")
@@ -589,11 +541,6 @@ namespace FleetSaaS.Infrastructure.Migrations
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Driver", b =>
                 {
                     b.Navigation("VehicleAssignments");
-                });
-
-            modelBuilder.Entity("FleetSaaS.Domain.Entities.Trip", b =>
-                {
-                    b.Navigation("OdometerLogs");
                 });
 
             modelBuilder.Entity("FleetSaaS.Domain.Entities.Vehicle", b =>

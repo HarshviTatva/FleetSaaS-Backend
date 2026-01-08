@@ -6,6 +6,7 @@ using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
 using FleetSaaS.Domain.Exceptions;
+using FleetSaaS.Domain.Helper;
 using FleetSaaS.Infrastructure.Common;
 
 namespace FleetSaaS.Application.Services
@@ -65,6 +66,17 @@ namespace FleetSaaS.Application.Services
         public async Task UnAssignVehicleToDriver(Guid id)
         {
             await _vehicleRepository.UnAssignVehicleToDriver(id);
+        }
+
+        public async Task<byte[]> ExportVehicleToCsvAsync(PagedRequest request)
+        {
+            VehicleResponse vehicleResponse = await _vehicleRepository.GetAllVehicles(request);
+
+            var exportData = _mapper.Map<IEnumerable<VehicleExportDTO>>(
+                vehicleResponse.Vehicles
+            );
+
+            return CsvExportHelper.GenerateCsv(exportData);
         }
     }
 }

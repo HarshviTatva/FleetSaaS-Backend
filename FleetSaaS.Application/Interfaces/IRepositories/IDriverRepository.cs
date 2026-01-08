@@ -8,7 +8,7 @@ namespace FleetSaaS.Application.Interfaces.IRepositories
     {
         Task<bool> ExistsByLicenseNumberAsync(string licenseNumber, Guid? driverId = null);
         Task<DriverResponse> GetAllDrivers(PagedRequest pagedRequest);
-        Task AddDriver(Driver driver);
+        //Task AddDriver(Driver driver);
         Task UpdateDriver(Driver driverUser);
         Task DeleteDriver(Guid driverId);
         Task<VehicleDTO> GetAssignedVehicle();

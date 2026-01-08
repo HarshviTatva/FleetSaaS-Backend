@@ -21,8 +21,8 @@ namespace FleetSaaS.Infrastructure.Repositories
             //fetching all dispatchers of particular company
             var dispatchers = await (
             from u in _dbContext.Users
-            where u.CompanyId == companyId
-               && !u.IsDeleted
+            where 
+                !u.IsDeleted
                && u.RoleId == (int)RoleType.Dispatcher
 
             select new UserDTO
@@ -70,11 +70,9 @@ namespace FleetSaaS.Infrastructure.Repositories
         }
 
         public async Task DeleteDispatcher(Guid dispatcherId)
-        {
-            Guid companyId = _tenantProvider.CompanyId;
-
-            var user = await _dbContext.Users
-                .FirstOrDefaultAsync(u => u.Id == dispatcherId && !u.IsDeleted && u.CompanyId==companyId);
+        { 
+            User? user = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Id == dispatcherId && !u.IsDeleted);
 
             if (user != null)
             {

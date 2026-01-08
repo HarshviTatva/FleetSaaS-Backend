@@ -39,8 +39,8 @@ namespace FleetSaaS.Infrastructure.Repositories
             .Where(x=>x.IsActive && !x.IsDeleted)
             on va.VehicleId equals v.Id into vGroup
             from v in vGroup.DefaultIfEmpty()
-            where d.CompanyId == companyId
-               && !d.IsDeleted
+            where  
+               !d.IsDeleted
                && !u.IsDeleted
                && u.RoleId == (int)RoleType.Driver
 
@@ -109,18 +109,10 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         }
 
-        public async Task AddDriver(Driver driver)
-        {
-            driver.CompanyId = _tenantProvider.CompanyId;
-            await _dbContext.Drivers.AddAsync(driver);
-            await _dbContext.SaveChangesAsync();
-        }
-
         public async Task UpdateDriver(Driver driverUser)
         {
-            Guid companyId = _tenantProvider.CompanyId;
             var driverUserData = await _dbContext.Drivers
-                .FirstOrDefaultAsync(u => u.Id == driverUser.Id && u.CompanyId == companyId);
+                .FirstOrDefaultAsync(u => u.Id == driverUser.Id);
 
             if (driverUserData == null)
                 throw new UnauthorizedAccessException(MessageConstants.DATA_RETRIEVAL_FAILED);
@@ -132,12 +124,9 @@ namespace FleetSaaS.Infrastructure.Repositories
         }
         public async Task DeleteDriver(Guid driverId)
         {
-            Guid companyId = _tenantProvider.CompanyId;
-
             var driver = await _dbContext.Drivers
                 .FirstOrDefaultAsync(d =>
                     d.Id == driverId &&
-                    d.CompanyId == companyId &&
                     !d.IsDeleted);
 
             if (driver == null)
@@ -158,8 +147,6 @@ namespace FleetSaaS.Infrastructure.Repositories
 
         public async Task<VehicleDTO> GetAssignedVehicle()
         {
-            Guid companyId = _tenantProvider.CompanyId;
-
             var userIdClaim = _httpContextAccessor.HttpContext?.User?
                                 .FindFirst("UserId")?.Value;
 
@@ -171,9 +158,6 @@ namespace FleetSaaS.Infrastructure.Repositories
                 join va in _dbContext.VehicleAssignments on d.Id equals va.DriverId
                 join v in _dbContext.Vehicles on va.VehicleId equals v.Id
                 where d.UserId == userId
-                      && d.CompanyId == companyId
-                      && va.CompanyId == companyId
-                      && v.CompanyId == companyId
                 select v
             ).AsNoTracking().FirstOrDefaultAsync();
 

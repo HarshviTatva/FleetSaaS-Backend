@@ -6,16 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FleetSaaS.Infrastructure.Repositories
 {
-    public class CommonRepository(ITenantProvider _tenantProvider, ApplicationDbContext _dbContext) : ICommonRepository
+    public class CommonRepository(ApplicationDbContext _dbContext) : ICommonRepository
     {
         public async Task<List<DropdownResponse>> GetAllDriverVehiclesDropdown()
         {
-            Guid companyId = _tenantProvider.CompanyId;
             return await _dbContext.VehicleAssignments
             .Where(va =>
                 va.IsActive &&
                 !va.IsDeleted &&
-                va.CompanyId == companyId &&
                 va.Vehicle.IsActive &&
                 !va.Vehicle.IsDeleted &&
                 !va.Driver.IsDeleted

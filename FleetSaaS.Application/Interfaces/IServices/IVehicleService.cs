@@ -12,5 +12,6 @@ namespace FleetSaaS.Application.Interfaces.IServices
         Task<Guid> AssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest);
         Task<Guid> ReAssignVehicleToDriver(AssignVehicleRequest assignVehicleRequest);
         Task UnAssignVehicleToDriver(Guid id);
+        Task<byte[]> ExportVehicleToCsvAsync(PagedRequest request);
     }
 }

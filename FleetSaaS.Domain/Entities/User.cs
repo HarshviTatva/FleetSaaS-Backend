@@ -12,5 +12,7 @@ namespace FleetSaaS.Domain.Entities
         public Guid CompanyId { get; set; }
         public Company Company { get; set; } = default!;
         public int RoleId { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }

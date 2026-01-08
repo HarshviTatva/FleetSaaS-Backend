@@ -12,4 +12,12 @@
         public string LicensePlate { get; set; }
         public Guid? CompanyId { get; set; }
     }
+
+    public class VehicleExportRequest
+    {
+        public string? Search { get; set; }
+        public bool? IsActive { get; set; }
+        public DateOnly? InsuranceExpiryDate { get; set; }
+    }
+
 }

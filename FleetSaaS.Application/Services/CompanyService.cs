@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.Interfaces.IRepositories;
+using FleetSaaS.Application.Interfaces.IRepositories.Generic;
 using FleetSaaS.Application.Interfaces.IServices;
 using FleetSaaS.Domain.Common.Messages;
 using FleetSaaS.Domain.Entities;
@@ -11,8 +12,11 @@ namespace FleetSaaS.Application.Services
 {
     public class CompanyService(
         IUserRepository userRepository,
+        IGenericRepository<Company> _companyRepo,
+        IGenericRepository<User> _userRepo,
         ICompanyRepository companyRepository, 
         IPasswordHasher<User> _passwordHasher,
+
         IMapper _mapper) : ICompanyService
     {
         public async Task<string> CompanyRegisterAsync(CompanyUserRegisterRequest companyUserRegisterRequest)
@@ -20,19 +24,20 @@ namespace FleetSaaS.Application.Services
           if (await companyRepository.ExistsByEmailAsync(companyUserRegisterRequest.Email))
                 throw new ApplicationException(TenantCommonMessages.ALREADY_REGISTERED);
           
-           var company = _mapper.Map<Company>(companyUserRegisterRequest);
+           Company company = _mapper.Map<Company>(companyUserRegisterRequest);
 
-          await companyRepository.AddAsync(company);
+          //await companyRepository.AddAsync(company);
+          await _companyRepo.AddAsync(company);
 
-          var ownerUser = _mapper.Map<User>(companyUserRegisterRequest);
+          User ownerUser = _mapper.Map<User>(companyUserRegisterRequest);
           ownerUser.CompanyId = company.Id;
           ownerUser.Password = _passwordHasher.HashPassword(
               ownerUser,
               companyUserRegisterRequest.Password
           );
             ownerUser.RoleId = (int)RoleType.CompanyOwner;
-          await userRepository.AddCompanyUser(ownerUser);
-
+          //await userRepository.AddCompanyUser(ownerUser);
+          await _userRepo.AddAsync(ownerUser);
           return ownerUser.CompanyId.ToString();
         }
         

@@ -20,5 +20,9 @@
         public string SortDirection { get; set; } = "asc";
 
         public int? Status { get; set; } = 0;
+
+        public string? Date { get; set; }
+
+        public bool? ShowCompletedRecords { get; set; }
     }
 }

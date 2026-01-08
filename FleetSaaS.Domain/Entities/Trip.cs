@@ -1,5 +1,6 @@
 ﻿using FleetSaaS.Domain.Enum;
 using FleetSaaS.Domain.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace FleetSaaS.Domain.Entities
 {
@@ -13,9 +14,10 @@ namespace FleetSaaS.Domain.Entities
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public TripStatus Status { get; set; } = TripStatus.Planned;
-        public ICollection<TripOdometerLog> OdometerLogs { get; set; }
-            = new List<TripOdometerLog>();
+        [MaxLength(100)]
+        public string? CancelReason { get; set; }
         public Guid? VehicleAssignmentId { get; set; }
         public VehicleAssignment VehicleAssignment { get; set; }
+        public long? DistanceCovered { get; set; }
     }
 }

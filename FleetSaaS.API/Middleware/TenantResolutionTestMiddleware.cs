@@ -4,20 +4,21 @@ using FleetSaaS.Infrastructure.Common;
 
 namespace FleetSaaS.API.Middleware
 {
-    public class TenantResolutionMiddleware : IMiddleware
+    public class TenantResolutionTestMiddleware
     {
+        private readonly RequestDelegate _next;
         private readonly ICompanyService _companyService;
         private readonly ITenantProvider _tenantProvider;
 
-        public TenantResolutionMiddleware(
-            ICompanyService companyService,
+        public TenantResolutionTestMiddleware(RequestDelegate next, ICompanyService companyService,
             ITenantProvider tenantProvider)
         {
+            _next = next;
             _companyService = companyService;
             _tenantProvider = tenantProvider;
         }
 
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public async Task Invoke(HttpContext context)
         {
             if (context.User.Identity?.IsAuthenticated == true)
             {
@@ -40,7 +41,16 @@ namespace FleetSaaS.API.Middleware
                 _tenantProvider.CompanyId = companyId;
             }
 
-            await next(context);
+            await _next(context);
         }
     }
+
+    // Extension method used to add the middleware to the HTTP request pipeline.
+    //public static class TenantResolutionTestMiddlewareExtensions
+    //{
+    //    public static IApplicationBuilder UseTenantResolutionTestMiddleware(this IApplicationBuilder builder)
+    //    {
+    //        return builder.UseMiddleware<TenantResolutionTestMiddleware>();
+    //    }
+    //}
 }

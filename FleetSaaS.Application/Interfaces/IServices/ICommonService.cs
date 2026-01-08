@@ -1,4 +1,5 @@
 ﻿using FleetSaaS.Application.DTOs.Response;
+using FleetSaaS.Domain.Enum;
 
 namespace FleetSaaS.Application.Interfaces.IServices
 {
@@ -6,5 +7,6 @@ namespace FleetSaaS.Application.Interfaces.IServices
     {
         string GenerateRandomPassword(int length);
         Task<List<DropdownResponse>> GetAllDriverVehiclesDropdown();
+        Task<string> GetTripStatusMessage(TripStatus status);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using FleetSaaS.Application.DTOs.Request;
 using FleetSaaS.Application.DTOs.Response;
 using FleetSaaS.Application.Interfaces.IServices;
+using FleetSaaS.Application.Services;
 using FleetSaaS.Domain.Common.Messages;
+using FleetSaaS.Domain.Helper;
 using FleetSaaS.Infrastructure.Common.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -97,9 +99,12 @@ namespace FleetSaaS.API.Controllers
             );
         }
 
-       
-        //automated insurance expiry date alerts
-
+        [HttpPost("export/vehicles")]
+        public async Task<IActionResult> ExportVehicles([FromBody] PagedRequest pagedRequest)
+        {
+            var csvBytes = await vehicleService.ExportVehicleToCsvAsync(pagedRequest);
+            return File(csvBytes, "text/csv", "vehicles.csv");
+        }
 
     }
 }
